@@ -1,0 +1,71 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% capa.tex                                                             %
+%                                                    início do arquivo %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% Preâmbulo                                                    %%%%%%%
+
+\documentclass[12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage{bookman}
+
+\setlength{\topmargin}{0mm}
+\setlength{\oddsidemargin}{0mm}
+\setlength{\headheight}{0mm}
+\setlength{\headsep}{0mm}
+\setlength{\marginparwidth}{0mm}
+\setlength{\footskip}{0mm}
+\setlength{\textwidth}{158mm}
+\setlength{\textheight}{245mm}
+\setlength{\parindent}{0mm}
+
+%%% Documento                                                    %%%%%%%
+
+\begin{document}
+
+\pagestyle{empty}
+
+\vspace*{\stretch{2}}
+
+\hrulefill
+
+\noindent
+\begin{center}
+  \LARGE Algoritmos Em\\
+  \Huge\bfseries Corpos Finitos
+\end{center}
+
+\hrulefill
+
+\vspace*{\stretch{3}}
+
+\begin{center}
+  \Large\mdseries Leandro Zatesko
+
+  \vspace{0.25\baselineskip}
+
+  \normalsize\slshape Bacharelando em Ciência Da Computação
+
+  \vspace*{\stretch{2}}
+
+  \Large\upshape Dr. Jair Donadelli Jr.
+
+  \vspace{0.25\baselineskip}
+
+  \normalsize\slshape Orientador
+\end{center}
+
+\vspace*{\stretch{4}}
+
+\begin{center}
+  \Large\sffamily UFPR 2007
+\end{center}
+
+\end{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% capa.tex                                                             %
+%                                                       fim de arquivo %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

@@ -1,0 +1,102 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% irredd.tex                                                           %
+%                                                    início do arquivo %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Irredutibilidade}
+
+\section{Um teste de irredutibilidade}
+
+\begin{Teo}\label{maint}
+  Sendo $n$ um natural não nulo, $p$ um primo positivo,
+  \begin{equation*}
+    L=\cjpp{\ell_j}{1\leq j\leq n}
+  \end{equation*}
+  o
+  conjunto de todos os divisores primos de $n$, $k=|L|$ e
+  \begin{equation*}
+    m_j=\frac{n}{\ell_j}\MMv\quad\forall j\in[k]\MMv
+  \end{equation*}
+  um polinômio $g\in\MMZ_p[x]$ de grau
+  $n$ é irredutível em $\MMZ_p[x]$ se e só se:
+  \begin{enumerate}[({\ref{maint}}.i)]
+    \item\label{mainti} $g(x)\divd \bigl(x^{p^n} -x\bigr)$;
+    \item\label{maintii} para todo $j\in[k]$, o polinômio constante
+      $1(x)$
+    é o único polinômio que divide ambos $g(x)$ e $x^{p^{m_j}}-x$
+  \end{enumerate}
+\end{Teo}
+
+\begin{prova}
+  Assumamos inicialmente que $g(x)$ seja irredutível em $\MMZ_p[x]$.
+  Do
+  teorema\xspace\ref{everyroot}, temos que toda raiz $\alpha$ de $g(x)$
+  pertence a
+  $\galois{p^n}$. Como $\galois{p^n}$ é um corpo finito com $p^n$
+  elementos, temos, do teorema\xspace\ref{teoacardifa}, que
+  \begin{equation*}
+    \alpha^{p^n} = \alpha\MMv
+  \end{equation*}
+  o que caracteriza $\alpha$ como raiz do polinômio $x^{p^n}-x$ e
+  nos traz, do teorema\xspace\ref{teoraizdivide}, que
+  \begin{equation*}
+    (x-\alpha)\divd \bigl(x^{p^n}-x\bigr)\MMp
+  \end{equation*}
+  Logo,
+  \begin{equation*}
+    g(x)\divd \bigl(x^{p^n} -x\bigr)
+  \end{equation*}
+  e provamos (\ref{mainti}). Ademais, temos que,
+  para qualquer natural $m$
+  menor que $n$, $g(x)$ não tem raízes em $\galois{p^m}$. Portanto, para
+  toda raiz $\alpha$ de $g(x)$ e todo natural $m$ menor que $n$,
+  sabemos,
+  também do teorema\xspace\ref{teoraizdivide},
+  que
+  \begin{equation*}
+    (x-\alpha)\ndivd \bigl(x^{p^m}-x\bigr)\MMp
+  \end{equation*}
+  Como para todo divisor $d(x)$ de $g(x)$ diferente do polinômio
+  constante
+  $\um(x)$
+  existe um subconjunto $\Gamma$ do conjunto das raízes de $g(x)$
+  tal que
+  \begin{equation*}
+    \prod_{\gamma\in\Gamma}(x-\gamma) = d(x)\MMv
+  \end{equation*}
+  temos que nenhum divisor de $g(x)$ diferente do polinômio constante
+  $\um(x)$
+  divide $x^{p^m}-x$, sendo $m$ um natural menor que $n$. Assim, em
+  particular, temos que nenhum divisor de $g(x)$ diferente do polinômio
+  constante $\um(x)$ divide $x^{p^m_j}-x$, para todo $j\in[k]$, e
+  provamos (\ref{maintii}).
+
+  Inversamente, assumamos agora (\ref{mainti}) e (\ref{maintii}). Como
+  \begin{equation*}
+    (x-\alpha)\divd \bigl(x^{p^n}-x\bigr)\MMv
+  \end{equation*}
+  qualquer que seja $\alpha$ raiz de $g(x)$, todas as raízes de $g(x)$
+  estão em $\galois{p^n}$. Queremos demonstrar que $g$ é
+  irredutível. Suponhamos, entretanto, que $g$ seja redutível e tomemos
+  $g_1$ um divisor irredutível não constante
+  de $g$. Sendo $m$ o grau de $g_1$, com
+  $m<n$, sabemos, do teorema\xspace\ref{everyroot},
+  que todas as raízes de $g_1(x)$ pertencem a $\galois{p^m}$, que é
+  gerado sobre $\MMZ_p$ por qualquer uma dessas raízes,
+  conforme o mesmo teorema\xspace\ref{everyroot}.
+  Já que $g_1$ é um divisor de $g$, temos que $\galois{p^m}\subseteq
+  \galois{p^n}$ e que $m\divd n$. Como $m<n$, é trivial que $m\divd
+  m_t$ para algum $t\in [k]$. Assim, analogamente, todas as
+  raízes de $g_1$ estão em $\galois{p^{m_t}}$. Portanto, $g_1(x)$,
+  que não é o polinômio constante $\um(x)$,
+  divide ambos $g(x)$ e $x^{p^{m_t}}-x$,
+  o que contraria
+  (\ref{maintii}). Conseqüentemente, $g(x)$ é irredutível.
+\end{prova}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% irred.tex                                                            %
+%                                                       fim do arquivo %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

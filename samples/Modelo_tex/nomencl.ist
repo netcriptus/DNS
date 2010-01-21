@@ -1,0 +1,31 @@
+% 	Nomenclature style file for MAKEINDEX. Version 2.2
+%
+%	Formats glossary entries to show, e. g. nomenclature
+%	of equations.
+%
+%	Written by Boris Veytsman boris@plmsc.psu.edu
+%
+%       Changes 11/25/96. Change quote character to %
+
+actual '@'
+quote '%'
+delim_0   ""
+delim_1   ""
+delim_2   ""
+% The next lines will produce some warnings when
+% running Makeindex as they try to cover two different
+% versions of the program:
+lethead_prefix   "\\nomgroup{"
+lethead_suffix   "}"
+lethead_flag       1
+heading_prefix   " \\nomgroup{"
+heading_suffix   "}"
+headings_flag       1
+preamble
+"\n \\begin{theglossary} \n"
+
+postamble
+"\n\n \\end{theglossary}\n"
+keyword "\\glossaryentry"
+%% 
+

@@ -1,0 +1,62 @@
+\contentsline {simbolo}{\ensuremath {d(f)} --- grau do polin\IeC {\^o}mio $f$}{6}{Def.2.3}
+\contentsline {simbolo}{\ensuremath {a_k} --- $a(k)$, sendo $a$ uma fun\IeC {\c c}\IeC {\~a}o com suporte finito}{6}{equation.2.1}
+\contentsline {simbolo}{\ensuremath {f\equiv g} --- identidade entre os polin\IeC {\^o}mios $f$ e $g$}{6}{Def.2.7}
+\contentsline {simbolo}{\ensuremath {\relax \@@underline {0}(x)} --- polin\IeC {\^o}mio $\relax \@@underline {0}(x)=\relax \@@underline {0}$}{6}{Def.2.8}
+\contentsline {simbolo}{\ensuremath {\relax \@@underline {1}(x)} --- polin\IeC {\^o}mio $\relax \@@underline {1}(x) = \relax \@@underline {1}$}{6}{Def.2.8}
+\contentsline {simbolo}{\ensuremath {\@mathrm {id}(x)} --- polin\IeC {\^o}mio identidade: $\@mathrm {id}(x) = x$}{6}{Def.2.8}
+\contentsline {simbolo}{\ensuremath {\rho (f)} --- conjunto das ra\IeC {\'\i }zes do polin\IeC {\^o}mio $f$}{7}{Def.2.10}
+\contentsline {simbolo}{\ensuremath {-f(x)} --- polin\IeC {\^o}mio $(-f)(x) = -\mathopen {\setbox \z@ \hbox {\frozen@everymath \@emptytoks \mathsurround \z@ $\nulldelimiterspace \z@ \left (\vcenter to\@ne \big@size {}\right .$}\box \z@ }f(x)\mathclose {\setbox \z@ \hbox {\frozen@everymath \@emptytoks \mathsurround \z@ $\nulldelimiterspace \z@ \left )\vcenter to\@ne \big@size {}\right .$}\box \z@ }$}{7}{Def.2.11}
+\contentsline {simbolo}{\ensuremath {R[x]} --- conjunto de todos os polin\IeC {\^o}mios sobre $R$}{7}{Teo.2.2}
+\contentsline {simbolo}{\ensuremath {f_1\delimiter "026E30F f_2} --- divisibilidade do polin\IeC {\^o}mio $f_1$ pelo polin\IeC {\^o}mio $f_2$}{11}{Def.2.12}
+\contentsline {simbolo}{\ensuremath {K(M)} --- o menor subcorpo que cont\IeC {\'e}m ambos $K$ e $M$}{13}{Def.2.16}
+\contentsline {simbolo}{\ensuremath {T(n)} --- tempo de execu\IeC {\c c}\IeC {\~a}o de um algoritmo com tamanho da entrada $n$}{18}{equation.3.1}
+\contentsline {simbolo}{\ensuremath {2^A} --- conjunto pot\IeC {\^e}ncia (ou conjunto das partes) de $A$}{21}{Def.A.1}
+\contentsline {simbolo}{\ensuremath {a\sim b} --- rela\IeC {\c c}\IeC {\~a}o $\sim $ entre $a$ e $b$}{21}{Def.A.4}
+\contentsline {simbolo}{\ensuremath {a\nsim b} --- nega\IeC {\c c}\IeC {\~a}o da rela\IeC {\c c}\IeC {\~a}o $\sim $ entre $a$ e $b$}{21}{Def.A.4}
+\contentsline {simbolo}{\ensuremath {[a]_{\sim }} --- classe de equival\IeC {\^e}ncia de $a$ por $\sim $}{22}{Def.A.10}
+\contentsline {simbolo}{\ensuremath {^{A}{\scriptstyle \diagup }_{{\sim }}} --- conjunto quociente de $A$ por $\sim $}{22}{Def.A.11}
+\contentsline {simbolo}{\ensuremath {d\delimiter "026E30F z} --- divisibilidade do inteiro $d$ pelo inteiro $z$}{23}{Def.A.12}
+\contentsline {simbolo}{\ensuremath {a\equiv b\hskip 1em\relax (\mathop {\mathgroup \symoperators mod}m)} --- congru\IeC {\^e}ncia entre $a$ e $b$ m\IeC {\'o}dulo $m$}{25}{Def.A.14}
+\contentsline {simbolo}{\ensuremath {[z]_{m}} --- classe de equival\IeC {\^e}ncia de $z$ pela rela\IeC {\c c}\IeC {\~a}o de congru\IeC {\^e}ncia m\IeC {\'o}dulo $m$}{25}{Def.A.15}
+\contentsline {simbolo}{\ensuremath {f\penalty \@M \mskip 2mu\mathpunct {}\nonscript \mkern -\thinmuskip {:}\mskip 6muplus1mu\relax A\rightarrow B} --- fun\IeC {\c c}\IeC {\~a}o de $A$ em $B$}{26}{Def.A.16}
+\contentsline {simbolo}{\ensuremath {f(a)} --- imagem de $a$ por $f$}{26}{Def.A.18}
+\contentsline {simbolo}{\ensuremath {f(S)} --- conjunto das imagens dos elementos de $S$ por $f$}{26}{Def.A.19}
+\contentsline {simbolo}{\ensuremath {f^{-1}(b)} --- imagem inversa de $b$ por $f$}{26}{Def.A.20}
+\contentsline {simbolo}{\ensuremath {f^{-1}(S)} --- conjunto das imagens inversas dos elementos de $S$ por $f$}{26}{Def.A.21}
+\contentsline {simbolo}{\ensuremath {A^B} --- conjunto das fun\IeC {\c c}\IeC {\~o}es de $B$ em $A$}{26}{Def.A.22}
+\contentsline {simbolo}{\ensuremath {A\simeq B} --- correspond\IeC {\^e}ncia biun\IeC {\'\i }voca entre $A$ e $B$}{26}{Def.A.26}
+\contentsline {simbolo}{\ensuremath {a\ast b} --- imagem de $(a,b)$ por $\ast $}{27}{Def.A.29}
+\contentsline {simbolo}{\ensuremath {\ast _S} --- restri\IeC {\c c}\IeC {\~a}o de $\ast $ a $S$}{27}{Def.A.34}
+\contentsline {simbolo}{\ensuremath {\overline {a}} --- elemento sim\IeC {\'e}trico de $a$}{28}{Def.A.36}
+\contentsline {simbolo}{\ensuremath {\DOTSB \bigsqcup@ \slimits@ _{j=m}^na_j} --- $a_m\ast a_{m+1}\ast \cdots \ast a_n$}{31}{Def.A.41}
+\contentsline {simbolo}{\ensuremath {H\subseteq (G,\ast )} --- propriedade de subgrupo de $H$ em rela\IeC {\c c}\IeC {\~a}o a $(G,\ast )$}{32}{Def.A.43}
+\contentsline {simbolo}{\ensuremath {a\sim b\hskip 1em\relax (\mathop {\mathgroup \symoperators mod}H)} --- rela\IeC {\c c}\IeC {\~a}o de congru\IeC {\^e}ncia \IeC {\`a} direita entre $a$ e $b$ m\IeC {\'o}dulo $H$}{34}{Def.A.44}
+\contentsline {simbolo}{\ensuremath {a\backsim b\hskip 1em\relax (\mathop {\mathgroup \symoperators mod}H)} --- rela\IeC {\c c}\IeC {\~a}o de congru\IeC {\^e}ncia \IeC {\`a} esquerda entre $a$ e $b$ m\IeC {\'o}dulo $H$}{34}{Def.A.44}
+\contentsline {simbolo}{\ensuremath {a\ast H} --- classe lateral \IeC {\`a} direita de $a$ m\IeC {\'o}dulo $H$}{34}{Def.A.45}
+\contentsline {simbolo}{\ensuremath {H\ast a} --- classe lateral \IeC {\`a} esquerda de $a$ m\IeC {\'o}dulo $H$}{34}{Def.A.45}
+\contentsline {simbolo}{\ensuremath {[G:H]} --- cardinalidade do conjunto quociente de $G$ por $\sim $ ou $\backsim $ m\IeC {\'o}dulo $H$}{36}{Def.A.47}
+\contentsline {simbolo}{\ensuremath {a^{\ast n}} --- $n$-\IeC {\'e}sima itera\IeC {\c c}\IeC {\~a}o de $\ast $ sobre $a$}{37}{Def.A.49}
+\contentsline {simbolo}{\ensuremath {\delimiter "426830A a\delimiter "526930B } --- subgrupo gerado por $a$}{40}{Teo.A.37}
+\contentsline {simbolo}{\ensuremath {^{G}{\scriptstyle \diagup }_{{N}}} --- grupo quociente de $G$ por $N$}{41}{Def.A.52}
+\contentsline {simbolo}{\ensuremath {N_1\ast N_2} --- multiplica\IeC {\c c}\IeC {\~a}o dos subgrupos normais $N_1$ e $N_2$}{41}{Def.A.53}
+\contentsline {simbolo}{\ensuremath {\relax \@@underline {0}} --- elemento neutro de uma opera\IeC {\c c}\IeC {\~a}o denotada por $+$}{43}{Item.39}
+\contentsline {simbolo}{\ensuremath {-r} --- sim\IeC {\'e}trico de $r$ em rela\IeC {\c c}\IeC {\~a}o a uma opera\IeC {\c c}\IeC {\~a}o denotada por $+$}{43}{Item.40}
+\contentsline {simbolo}{\ensuremath {ab} --- $a\cdot b$}{43}{Def.A.57}
+\contentsline {simbolo}{\ensuremath {a-b} --- $a+(-b)$}{43}{Def.A.57}
+\contentsline {simbolo}{\ensuremath {nr} --- $n$-\IeC {\'e}simo m\IeC {\'u}ltiplo de $r$}{44}{Def.A.59}
+\contentsline {simbolo}{\ensuremath {L\subseteq (R,+,\cdot )} --- propriedade de subanel de $L$ em rela\IeC {\c c}\IeC {\~a}o a $(R,+,\cdot )$}{44}{Def.A.61}
+\contentsline {simbolo}{\ensuremath {\relax \@@underline {1}} --- elemento neutro de uma opera\IeC {\c c}\IeC {\~a}o denotada por $\cdot $}{45}{Item.43}
+\contentsline {simbolo}{\ensuremath {r} --- elemento sim\IeC {\'e}trico de $r$ em rela\IeC {\c c}\IeC {\~a}o a uma opera\IeC {\c c}\IeC {\~a}o denotada por $\cdot $}{46}{Item.44}
+\contentsline {simbolo}{\ensuremath {r^n} --- $n$-\IeC {\'e}sima pot\IeC {\^e}ncia de $r$}{46}{Def.A.65}
+\contentsline {simbolo}{\ensuremath {K\subseteq (F,+,\cdot )} --- propriedade de subcorpo de $K$ em rela\IeC {\c c}\IeC {\~a}o a $(F,+,\cdot )$}{49}{Def.A.72}
+\contentsline {simbolo}{\ensuremath {\delimiter "426830A S\delimiter "526930B } --- ideal gerado por $S$}{51}{Def.A.76}
+\contentsline {simbolo}{\ensuremath {\delimiter "426830A s\delimiter "526930B } --- ideal gerado por $\left \{ s \right \}$}{51}{Def.A.76}
+\contentsline {simbolo}{\ensuremath {^{R}{\scriptstyle \diagup }_{{J}}} --- anel de classes de res\IeC {\'\i }duos de $R$ por $J$}{53}{Def.A.82}
+\contentsline {simbolo}{\ensuremath {\@mathbb {F}_{p}} --- corpo de Galois de ordem $p$}{54}{Teo.A.62}
+\contentsline {simbolo}{\ensuremath {\boldsymbol {0}} --- elemento neutro de uma opera\IeC {\c c}\IeC {\~a}o denotada por $\boldsymbol {+}$}{56}{Item.71}
+\contentsline {simbolo}{\ensuremath {\boldsymbol {-}\boldsymbol {u}} --- sim\IeC {\'e}trico de $\boldsymbol {u}$ em rela\IeC {\c c}\IeC {\~a}o a uma opera\IeC {\c c}\IeC {\~a}o denotada por $\boldsymbol {+}$}{56}{Item.72}
+\contentsline {simbolo}{\ensuremath {a\boldsymbol {u}} --- $a\boldsymbol {\cdot }\boldsymbol {u}$}{56}{Def.A.87}
+\contentsline {simbolo}{\ensuremath {\boldsymbol {u}\boldsymbol {-}\boldsymbol {v}} --- $\boldsymbol {u}\boldsymbol {+}(\boldsymbol {-}\boldsymbol {v})$}{56}{Def.A.87}
+\contentsline {simbolo}{\ensuremath {\qopname \relax o{dim}(V,\boldsymbol {+},\boldsymbol {\cdot })} --- dimens\IeC {\~a}o do espa\IeC {\c c}o vetorial $(V,\boldsymbol {+},\boldsymbol {\cdot })$}{56}{Def.A.92}
+\contentsline {simbolo}{\ensuremath {[F:K]} --- dimens\IeC {\~a}o do espa\IeC {\c c}o vetorial de $F$ sobre $K$}{57}{Def.A.93}
+\contentsline {simbolo}{\ensuremath {\@mathbb {F}_{q}} --- corpo de Galois de ordem $q=p^m$}{58}{Def.A.94}

@@ -1,0 +1,49 @@
+This is BibTeX, Version 0.99c (Web2C 7.5.4)
+The top-level auxiliary file: tg.aux
+The style file: tg.bst
+Database file #1: tg.bib
+Warning--string name "siamjc" is undefined
+--line 5 of file tg.bib
+Warning--empty journal in pralgffrabin
+You've used 5 entries,
+            2116 wiz_defined-function locations,
+            527 strings with 4506 characters,
+and the built_in function-call counts, 1327 in all, are:
+= -- 122
+> -- 58
+< -- 0
++ -- 24
+- -- 18
+* -- 74
+:= -- 236
+add.period$ -- 15
+call.type$ -- 5
+change.case$ -- 20
+chr.to.int$ -- 0
+cite$ -- 6
+duplicate$ -- 59
+empty$ -- 115
+format.name$ -- 18
+if$ -- 274
+int.to.chr$ -- 0
+int.to.str$ -- 5
+missing$ -- 9
+newline$ -- 28
+num.names$ -- 10
+pop$ -- 37
+preamble$ -- 1
+purify$ -- 19
+quote$ -- 0
+skip$ -- 33
+stack$ -- 0
+substring$ -- 51
+swap$ -- 4
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 12
+warning$ -- 1
+while$ -- 12
+width$ -- 6
+write$ -- 55
+(There were 2 warnings)

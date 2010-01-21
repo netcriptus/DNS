@@ -1,0 +1,15 @@
+\beamer@endinputifotherversion {3.07pt}
+\select@language {brazil}
+\beamer@sectionintoc {1}{Introdu\IeC {\c c}\IeC {\~a}o}{3}{0}{1}
+\beamer@subsectionintoc {1}{1}{Algoritmos aleatorizados}{4}{0}{1}
+\beamer@sectionintoc {2}{Aleatoriedade}{15}{0}{2}
+\beamer@subsectionintoc {2}{1}{Distribui\IeC {\c c}\IeC {\~o}es de probabilidades}{16}{0}{2}
+\beamer@sectionintoc {3}{Pseudoaleatoriedade}{24}{0}{3}
+\beamer@subsectionintoc {3}{1}{Passeios aleat\IeC {\'o}rios em grafos completos}{25}{0}{3}
+\beamer@subsectionintoc {3}{2}{Passeios aleat\IeC {\'o}rios em grafos regulares}{30}{0}{3}
+\beamer@subsectionintoc {3}{3}{Passeios aleat\IeC {\'o}rios em grafos expansores}{45}{0}{3}
+\beamer@subsectionintoc {3}{4}{Reciclagem de {\itshape bits} aleat\IeC {\'o}rios}{50}{0}{3}
+\beamer@sectionintoc {4}{Semialeatoriedade}{79}{0}{4}
+\beamer@subsectionintoc {4}{1}{Introdu\IeC {\c c}\IeC {\~a}o ao conceito}{80}{0}{4}
+\beamer@subsectionintoc {4}{2}{Semialeatoriedade em subconjuntos do $\mathbb {Z}_n$}{84}{0}{4}
+\beamer@sectionintoc {5}{Conclus\IeC {\~a}o}{99}{0}{5}

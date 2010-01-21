@@ -1,0 +1,61 @@
+===============================================================
+monoTeX -- CONJUNTO DE REGRAS PARA CRIAÇÃO FÁCIL DE MONOGRAFIAS
+USANDO UMA INSTALAÇÃO PADRÃO DO teTeX, por José Geraldo Gouvêa.
+======================= /// monoTeX \\\ =======================
+
+URL : http://www.leopoldina.com.br/~jggouvea/mono/mono-tex.html
+===============================================================
+
+PERGUNTAS E RESPOSTAS
+---------------------------------------------------------------
+0 - Como começar a usar o monoTeX?
+	Desempacote o arquivo com ''tar -xvzf mono-tex.tar.gz''
+	e entre no diretório TeX que será criado. Faça lá todas
+	as modificações e edições que quiser.
+                      *** IMPORTANTE ***
+	Antes de começar a monografia, renomeie a pasta ''TeX''
+	para qualquer outra coisa para evitar que quando   você
+	desempacote o arquivo para criar outra monografia acabe
+	sobrescrevendo os textos que escreveu com arquivos   em
+	branco.
+1 - Como escrever?
+	Escreva cada capítulo, usando os modelos encontrados na
+	pasta ''chapters''. Edite o arquivo ''variables.tex'' e
+	defina os dados de sua faculdade e curso, etc.  Reserve
+	alguns minutos para verificar o  ''preamble.tex''  para
+	confirmar se as medidas estão de acordo com  sua facul-
+	dade. Edite o arquivo ''frontmatter.tex'' para escrever
+	o Resumo, dedicatória, etc. Se for usar citações,  deve
+	também escrever a bibliografia e fazer as referências e
+	citações usando os modelos. Qualquer dúvida que tiver é
+	só consultar o arquivo ''examples.t2t''. Tudo pronto? É
+	só digitar ''make'', e depois ''make pdf'' em uma linha
+	de comando de dentro da pasta ''TeX''.
+2 - Como faço para incluir um glossário?
+	Descomente a última linha do arquivo ''backmatter.tex''
+	e leia o ''examples.t2t'' para aprender como inserir os
+	termos e suas definições. Antes de compilar o documento
+	você deverá preparar o glossário com ''make gloss''  ou
+	''./doglossary.sh''.
+3 - Como faço para fazer **isto** ou //aquilo//?
+	Leia o arquivo ''examples.t2t''.
+4 - Como faço para imprimir?
+	Use o comandos: ''dvips mono.dvi'' ou abra o arquivo em
+	um visualizador e selecione imprimir. Os visualizadores
+	padrão são:
+	- DVI : xdvi
+	- PS : gv ou kghostview
+	- PDF : xpdf, gv ou kghostview
+5 - Como mudar \\isso\\ ou //aquilo//?
+	Leia os arquivos.  Eles são comentados e explicam muito
+	bem como fazer personalizações.
+6 - Como instalar?
+	Não se instala.
+7 - Quanto custa?
+	Nada, mas eu aceito doações... ;-)
+===============================================================
+
+       Comentários, críticas e sugestões, escreva para:
+
+                 jggouvea@leopoldina.com.br
+===============================================================

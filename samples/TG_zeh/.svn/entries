@@ -1,0 +1,136 @@
+8
+
+dir
+21
+http://pet.inf.ufpr.br/rep/zeh/TG
+http://pet.inf.ufpr.br/rep/zeh/TG
+
+
+
+2007-11-07T23:38:44.774985Z
+21
+zeh
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+fc402216-fe19-48a6-aebb-9c54bc09c4f3
+
+Output
+dir
+
+tg.bst
+file
+
+
+
+
+2007-11-07T10:58:44.000000Z
+80e4c1fd3ed6cfb217ce8b295dfd9f9b
+2007-10-11T17:37:24.679515Z
+13
+zeh
+
+psjoin
+file
+
+
+
+
+2007-11-07T10:58:44.000000Z
+aa634f6f2f8f7294385e2e83b43172ca
+2007-11-05T18:02:47.642822Z
+15
+zeh
+
+Sources
+dir
+
+Figures
+dir
+
+Logs
+dir
+
+tg.bib
+file
+
+
+
+
+2007-11-07T10:58:44.000000Z
+b4b07afdab0e61be05adc5fdb1a1cafb
+2007-10-11T17:37:24.679515Z
+13
+zeh
+
+fazindex
+file
+
+
+
+
+2007-11-07T10:58:44.000000Z
+24405a3f96a94d941ac5a885e5b6fb8b
+2007-11-05T18:02:47.642822Z
+15
+zeh
+
+tg.tex
+file
+
+
+
+
+2007-11-07T10:58:44.000000Z
+cdedf84d568b61dc007e9fb80099f26e
+2007-11-07T09:35:58.652448Z
+17
+zeh
+
+tg.cls
+file
+
+
+
+
+2007-11-07T10:58:44.000000Z
+9a1d23b8ec64a24f458da434a27b1842
+2007-11-05T19:27:17.841630Z
+16
+zeh
+
+README.txt
+file
+
+
+
+
+2007-11-07T10:58:44.000000Z
+d41d8cd98f00b204e9800998ecf8427e
+2007-08-29T14:04:51.354930Z
+1
+zeh
+
+Makefile
+file
+
+
+
+
+2007-11-07T11:03:30.000000Z
+f795d4b5d66ad7d6ae8b2cf8acc116ba
+2007-11-07T10:16:25.749254Z
+20
+zeh
+

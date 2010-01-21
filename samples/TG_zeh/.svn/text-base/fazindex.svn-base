@@ -1,0 +1,181 @@
+#!/usr/bin/perl -n
+# Time-stamp: <2003/02/03 12:09:36 benavuya [benavuya] am>
+#
+# Isto é software livre.  Se eu me preocupasse em colocar uma licença,
+# seria GPL.  Mas não vale à pena o esforço.
+#        Arnaldo Mandel <am@ime.usp.br>
+#
+# Versão 1.1
+#  Bug: supunha que o LaTeX texificava os acentos - isso depende do pacote
+#  Report: Daniel Aloise <aloisebr@yahoo.com.br>
+#
+# Versão 1.0
+#   Distribuição pública.
+
+BEGIN {
+  while ($ARGV[0] =~ /^-/) {
+    if ($ARGV[0] == '-h') {
+      exec perldoc, $0;
+    }
+    if ($ARGV[0] =~ /^-[opst]$/) {
+      push @narg, shift @ARGV;
+    }
+    $usestdin = 1 if $ARGV[0] == "-i";
+    push @narg, shift @ARGV;
+  }
+  if ($usestdin) {
+    open INDICE, join " ","|makeindex",@narg or die "Nao consegui executar makeindex.";
+  } else {
+    ($indname = $ARGV[0].'.ifi') =~ s/\.idx\.ifi$/.ifi/;
+    open INDICE,">$indname" or die "Nao consegui criar $indname.";
+  }
+}
+
+($com, $ent, $pg) = /(\\indexentry){(.*)}{([^{]*)}/;
+
+print INDICE $com,"{",
+    join ('!', map {detex ($_)} split '!', $ent),
+    "}{$pg}\n";
+
+END {
+  close INDICE;
+  exec makeindex,@narg,$indname unless $usestdin;
+}
+
+
+sub detex {
+  my $orig = shift;
+  local $_;
+  if ($orig =~ /\@/) {
+    ($_ , $orig) = split '@', $orig;
+  } else {
+    $_ = $orig;
+  }
+  s/\|.*//;
+  s/\\i */|/g; # protecao contra o proximo comando
+  s/\\([~`'"^]|[A-Za-z]+) *//g;
+  s/\|/i/g;
+  while (/{/) {
+    s/{([^{}]*)}/$1/g;
+  }
+  # desacentuacao: parece que alguns .idx recebem letras acentuadas
+  tr/ÁÀÃÂÄÉÈÊËÍÌÎÏÓÒÕÔÖÚÙÛÜÇÑáàãâäéèêëíìîïóòõôöúùûüçñ/AAAAAEEEEIIIIOOOOOUUUUCNaaaaaeeeeiiiiooooouuuucn/;
+  $_.'@'.$orig;
+}
+
+__END__
+
+=head1 NOME
+
+B<fazindex> - preprocessador para makeindex
+
+=head1 SINOPSE
+
+C<fazindex [-c] [-g] [-i] [-l] [-o ind] [-p  num]  [-q]  [-r]
+     [-s sfile] [-t log] [idx0 idx1 idx2...]>
+
+
+=head1 DESCRIÇÃO
+
+A forma usual de se preparar índices com LaTeX é 
+
+=over 4
+
+=item 1 -
+
+Utilizar os comandos C<\makeindex> e C<\index> no texto
+
+=item 2 -
+
+Processar o arquivo F<.idx> resultante com makeindex(1).
+
+=item 3 -
+
+Incluir o arquivo F<.ind>, produzido pelo makeindex no texto.
+
+=back
+
+Para textos escritos em português, aparece um problema: ítens
+acentuados no índice aparecem fora da ordem alfabética.  O makeindex
+tem um mecanismo para corrigir isso: pode-se preceder um item com uma
+chave a ser usada na ordenação.
+
+Ocorre que fazer isso diretamente no texto tem alguns inconvenientes:
+além de ser passível de erros e distrações, impede o bom uso de macros
+que geram entradas para o índice.  Por exemplo, é comum usar uma macro
+para definir um termo, que ao mesmo tempo insere o termo em itálico no
+texto e coloca o termo no índice.  Claro que sempre é possível
+redefinir a macro para aceitar uma chave de ordenação, mas isso começa
+a ficar complicado, principalmente com macros empacotadas.
+
+B<fazindex> faz isso automaticamente, criando para cada item uma chave
+de ordenação baseada na I<deTeXificação> da chave original.  A
+I<deTeXificação> consiste em eliminar todos os comando TeX/LaTeX, e
+substituir todas as letras acentuadas pela respectiva versão sem
+acento.  É bom lembrar que a chave de ordenação, quando não presente
+explicitamente, é o próprio item.
+
+Os vários arquivos F<.idx> são processados dessa forma, e o resultado
+gravado em um único arquivo, com extensão F<.ifi>.  O makeindex é
+então chamado com esse arquivo na entrada e com todas as outras opções.
+
+B<fazindex> pode também ser usado como filtro, da mesma forma que o
+makeindex, com a opção B<-i>.
+
+=head2 Opções
+
+Todas as opções do makeindex(1) são válidas; veja o respectivo manual.
+Há uma opção nova:
+
+=over 4
+
+=item B<-h>
+
+Apresenta este manual.
+
+=back
+
+=head2 Diferenças com o makeindex
+
+=over 4
+
+=item *
+
+B<fazindex> supõe que seus arquivos de entrada são do tipo F<.idx>.
+
+=item *
+
+O(s) nome(s) do(s) arquivos de entrada deve(m) estar completo(s).  Ou
+seja, B<fazindex> não coloca a extensão F<.idx> por default caso não
+encontre o arquivo de entrada.
+
+=item *
+
+Arquivos de estilo não tem suporte no fazindex.  Isso afeta somente a
+entrada, já que a saída é feita pelo makeindex.  Assim, quem gosta de
+redefinir o papel dos caracteres B<! @ |> para seus índices terá que se
+virar sem o fazindex.  Ou modificá-lo, afinal isso é software livre.
+
+=back
+
+
+=head1 VEJA TAMBÉM
+
+makeindex(1).
+
+=head1 VERSÃO
+
+Este é o manual do fazindex 1.0.
+
+=head1 AUTOR
+
+Arnaldo Mandel <am@ime.usp.br>
+
+=head1 COPYRIGHT
+
+Copyright (c) 2000 por Arnaldo Mandel
+
+=head1 LICENÇA
+
+Este programa é software livre.  Pode ser redistribuído e modificado
+nos termos da GPL.

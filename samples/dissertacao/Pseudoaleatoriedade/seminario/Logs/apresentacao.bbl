@@ -1,0 +1,19 @@
+\begin{thebibliography}{1}
+
+\bibitem{Chazelle-2000}
+B.~Chazelle.
+\newblock {\em The Discrepancy Method: Randomness and Complexity}.
+\newblock Cambridge University Press, 2000.
+\newblock Cap\'itulo 9: Pseudorandomness.
+
+\bibitem{Quasi-random-subsets}
+{F. R. K. Chung} and {R. L. Graham}.
+\newblock Quasi-random subsets of $\mathbb{Z}_n$.
+\newblock {\em Journal of Combinatorial Theory}, pages 64--86, 1992.
+
+\bibitem{Quasi-random-graphs}
+{F. R. K. Chung}, {R. L. Graham}, and {R. M. Wilson}.
+\newblock Quasi-random graphs.
+\newblock {\em Proc. Natl. Acad. Sci.}, 85:969--970, 1988.
+
+\end{thebibliography}
