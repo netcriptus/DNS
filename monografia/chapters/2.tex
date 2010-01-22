@@ -1,2 +1,13 @@
 \chapter{Estrutura do Domain Name System}
 
+Desde o início das discussões sobre um espaço de nomes, sempre foi
+cogitada uma solução hierárquica e distribuída \cite{rfc1034} para a
+implementação.
+
+Hoje, a base de dados do DNS é indexada por nomes de domnínio. Cada
+domínio é um caminho em uma árvore invertida. A estrutura de árvore é
+similar à estrutura do sistema de arquivos utilizado nos sistemas
+\textit{Unix}. A árvore tem uma única raiz, chamado de diretório
+\textit{root} (raiz) no \textit{Unix}, e representado por uma barra
+(/). No DNS, esse diretório é chamado simplesmente de ``raiz'', e não
+recebe nome.
