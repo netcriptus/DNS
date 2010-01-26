@@ -3,7 +3,7 @@
 \contentsline {simbolo}{\ensuremath {f\equiv g} --- identidade entre os polin\IeC {\^o}mios $f$ e $g$}{6}{Def.2.7}
 \contentsline {simbolo}{\ensuremath {\relax \@@underline {0}(x)} --- polin\IeC {\^o}mio $\relax \@@underline {0}(x)=\relax \@@underline {0}$}{6}{Def.2.8}
 \contentsline {simbolo}{\ensuremath {\relax \@@underline {1}(x)} --- polin\IeC {\^o}mio $\relax \@@underline {1}(x) = \relax \@@underline {1}$}{6}{Def.2.8}
-\contentsline {simbolo}{\ensuremath {\@mathrm {id}(x)} --- polin\IeC {\^o}mio identidade: $\@mathrm {id}(x) = x$}{6}{Def.2.8}
+\contentsline {simbolo}{\ensuremath {\mathrm {id}(x)} --- polin\IeC {\^o}mio identidade: $\mathrm {id}(x) = x$}{6}{Def.2.8}
 \contentsline {simbolo}{\ensuremath {\rho (f)} --- conjunto das ra\IeC {\'\i }zes do polin\IeC {\^o}mio $f$}{7}{Def.2.10}
 \contentsline {simbolo}{\ensuremath {-f(x)} --- polin\IeC {\^o}mio $(-f)(x) = -\mathopen {\setbox \z@ \hbox {\frozen@everymath \@emptytoks \mathsurround \z@ $\nulldelimiterspace \z@ \left (\vcenter to\@ne \big@size {}\right .$}\box \z@ }f(x)\mathclose {\setbox \z@ \hbox {\frozen@everymath \@emptytoks \mathsurround \z@ $\nulldelimiterspace \z@ \left )\vcenter to\@ne \big@size {}\right .$}\box \z@ }$}{7}{Def.2.11}
 \contentsline {simbolo}{\ensuremath {R[x]} --- conjunto de todos os polin\IeC {\^o}mios sobre $R$}{7}{Teo.2.2}
@@ -52,11 +52,11 @@
 \contentsline {simbolo}{\ensuremath {\delimiter "426830A S\delimiter "526930B } --- ideal gerado por $S$}{51}{Def.A.76}
 \contentsline {simbolo}{\ensuremath {\delimiter "426830A s\delimiter "526930B } --- ideal gerado por $\left \{ s \right \}$}{51}{Def.A.76}
 \contentsline {simbolo}{\ensuremath {^{R}{\scriptstyle \diagup }_{{J}}} --- anel de classes de res\IeC {\'\i }duos de $R$ por $J$}{53}{Def.A.82}
-\contentsline {simbolo}{\ensuremath {\@mathbb {F}_{p}} --- corpo de Galois de ordem $p$}{54}{Teo.A.62}
+\contentsline {simbolo}{\ensuremath {\mathbb {F}_{p}} --- corpo de Galois de ordem $p$}{54}{Teo.A.62}
 \contentsline {simbolo}{\ensuremath {\boldsymbol {0}} --- elemento neutro de uma opera\IeC {\c c}\IeC {\~a}o denotada por $\boldsymbol {+}$}{56}{Item.71}
 \contentsline {simbolo}{\ensuremath {\boldsymbol {-}\boldsymbol {u}} --- sim\IeC {\'e}trico de $\boldsymbol {u}$ em rela\IeC {\c c}\IeC {\~a}o a uma opera\IeC {\c c}\IeC {\~a}o denotada por $\boldsymbol {+}$}{56}{Item.72}
 \contentsline {simbolo}{\ensuremath {a\boldsymbol {u}} --- $a\boldsymbol {\cdot }\boldsymbol {u}$}{56}{Def.A.87}
 \contentsline {simbolo}{\ensuremath {\boldsymbol {u}\boldsymbol {-}\boldsymbol {v}} --- $\boldsymbol {u}\boldsymbol {+}(\boldsymbol {-}\boldsymbol {v})$}{56}{Def.A.87}
 \contentsline {simbolo}{\ensuremath {\qopname \relax o{dim}(V,\boldsymbol {+},\boldsymbol {\cdot })} --- dimens\IeC {\~a}o do espa\IeC {\c c}o vetorial $(V,\boldsymbol {+},\boldsymbol {\cdot })$}{56}{Def.A.92}
 \contentsline {simbolo}{\ensuremath {[F:K]} --- dimens\IeC {\~a}o do espa\IeC {\c c}o vetorial de $F$ sobre $K$}{57}{Def.A.93}
-\contentsline {simbolo}{\ensuremath {\@mathbb {F}_{q}} --- corpo de Galois de ordem $q=p^m$}{58}{Def.A.94}
+\contentsline {simbolo}{\ensuremath {\mathbb {F}_{q}} --- corpo de Galois de ordem $q=p^m$}{58}{Def.A.94}

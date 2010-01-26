@@ -1,0 +1,37 @@
+\select@language {brazil}
+\contentsline {chapter}{\numberline {1}Introdu\IeC {\c c}\IeC {\~a}o}{1}{chapter.1}
+\contentsline {chapter}{\numberline {2}Esbo\IeC {\c c}o dos fundamentos te\IeC {\'o}ricos}{5}{chapter.2}
+\contentsline {section}{\numberline {2.1}Polin\IeC {\^o}mios}{5}{section.2.1}
+\contentsline {section}{\numberline {2.2}An\IeC {\'e}is de polin\IeC {\^o}mios}{7}{section.2.2}
+\contentsline {section}{\numberline {2.3}Divisibilidade e irredutibilidade polinomial}{11}{section.2.3}
+\contentsline {chapter}{\numberline {3}O algoritmo}{17}{chapter.3}
+\contentsline {chapter}{\numberline {4}Conclus\IeC {\~a}o}{19}{chapter.4}
+\contentsline {chapter}{\numberline {A}Fundamentos alg\IeC {\'e}bricos}{21}{appendix.A}
+\contentsline {section}{\numberline {A.1}Conceitos preliminares}{21}{section.A.1}
+\contentsline {subsection}{\numberline {A.1.1}Parti\IeC {\c c}\IeC {\~o}es}{21}{subsection.A.1.1}
+\contentsline {subsection}{\numberline {A.1.2}Rela\IeC {\c c}\IeC {\~o}es}{21}{subsection.A.1.2}
+\contentsline {subsection}{\numberline {A.1.3}Divisibilidade no conjunto dos n\IeC {\'u}meros inteiros}{22}{subsection.A.1.3}
+\contentsline {subsection}{\numberline {A.1.4}Fun\IeC {\c c}\IeC {\~o}es}{26}{subsection.A.1.4}
+\contentsline {subsection}{\numberline {A.1.5}Opera\IeC {\c c}\IeC {\~o}es}{27}{subsection.A.1.5}
+\contentsline {section}{\numberline {A.2}Grupos e subgrupos}{28}{section.A.2}
+\contentsline {subsection}{\numberline {A.2.1}Grupos}{28}{subsection.A.2.1}
+\contentsline {subsection}{\numberline {A.2.2}Grupos abelianos}{32}{subsection.A.2.2}
+\contentsline {subsection}{\numberline {A.2.3}Subgrupos}{32}{subsection.A.2.3}
+\contentsline {subsection}{\numberline {A.2.4}Classes laterais}{34}{subsection.A.2.4}
+\contentsline {subsection}{\numberline {A.2.5}Grupos finitos}{36}{subsection.A.2.5}
+\contentsline {subsection}{\numberline {A.2.6}Grupos c\IeC {\'\i }clicos}{37}{subsection.A.2.6}
+\contentsline {subsection}{\numberline {A.2.7}Subgrupos normais e grupos quocientes}{41}{subsection.A.2.7}
+\contentsline {section}{\numberline {A.3}An\IeC {\'e}is e estruturas afins}{43}{section.A.3}
+\contentsline {subsection}{\numberline {A.3.1}An\IeC {\'e}is}{43}{subsection.A.3.1}
+\contentsline {subsection}{\numberline {A.3.2}Suban\IeC {\'e}is}{44}{subsection.A.3.2}
+\contentsline {subsection}{\numberline {A.3.3}An\IeC {\'e}is comutativos}{45}{subsection.A.3.3}
+\contentsline {subsection}{\numberline {A.3.4}An\IeC {\'e}is com unidade}{45}{subsection.A.3.4}
+\contentsline {subsection}{\numberline {A.3.5}Dom\IeC {\'\i }nios de integridade}{46}{subsection.A.3.5}
+\contentsline {subsection}{\numberline {A.3.6}Corpos}{48}{subsection.A.3.6}
+\contentsline {subsection}{\numberline {A.3.7}Corpos finitos}{48}{subsection.A.3.7}
+\contentsline {subsection}{\numberline {A.3.8}Subcorpos}{49}{subsection.A.3.8}
+\contentsline {subsection}{\numberline {A.3.9}Ideais}{50}{subsection.A.3.9}
+\contentsline {subsection}{\numberline {A.3.10}An\IeC {\'e}is quocientes}{52}{subsection.A.3.10}
+\contentsline {section}{\numberline {A.4}Espa\IeC {\c c}os vetoriais}{55}{section.A.4}
+\contentsline {subsection}{\numberline {A.4.1}Conceitua\IeC {\c c}\IeC {\~a}o}{55}{subsection.A.4.1}
+\contentsline {section}{\numberline {A.5}Espa\IeC {\c c}os vetoriais gerados por subcorpos}{57}{section.A.5}
