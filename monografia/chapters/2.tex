@@ -127,5 +127,34 @@ que um registro tem as seguintes informações \cite{comer}:
       \emph{PTR} & Ponteiro para outro domínio de nomes.\\
       \emph{SOA} & \textit{Start of Authority} -- Identifica o início de
       uma Zona de Autoridade.
-    \end{tabular}
+    \end{tabular}\\
+
+  \textbf{Classe} & É um valor de 16 bits que itentifica a família de um
+  protocolo ou uma instância de um protocolo. Os valores especificados
+  \cite{rfc1034} são:\\
+  & \begin{tabular}{ l p{0.70\textwidth} }
+      \emph{IN} & O sistema Internet\\
+      \emph{CH} & O sistema \textit{Chaos}
+    \end{tabular}\\
+  \textbf{TTL} & \textit{Time to Live}. Esse campo é um inteiro de 32
+  bits, e representa o tempo máximo, em segundos, que um registro pode
+  ficar armazenado em cache. Ao fim desse tempo, o registro deve ser
+  descartado.\\
+  \textbf{RDATA} & O campo com os dados, e, eventualmente, dados
+  dependentes.\\
 \end{tabular}
+
+\section{Servidores de nomes}
+
+Servidores de nomes são repositórios de informações que, juntos, compõe
+a árvore do DNS \cite{albitz}. As informações contidas em um servidor de
+nomes pode ser obtida através de um arquivo local (chamado
+\textit{master file}) ou a partir de outros servidores de nomes.
+
+Os servidores que obtém os dados por um arquivo de configuração são
+chamados de primários, e os outros, secundários. A informação de um
+servidor primário é replicada para vários servidores secundários para
+garantir a redundância dos dados.
+
+Todo servidor tem informação autoritária sobre uma zona, e alguns
+servidores podem ser autoridades para várias zonas.

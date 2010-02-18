@@ -1,4 +1,4 @@
-This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=latex 2009.10.30)  17 FEB 2010 22:33
+This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=latex 2009.10.30)  18 FEB 2010 17:45
 entering extended mode
  %&-line parsing enabled.
 **mono.tex
@@ -612,8 +612,12 @@ Overfull \hbox (9.98582pt too wide) in paragraph at lines 119--131
 [][]| 
  []
 
+
+Package natbib Warning: Citation `rfc1034' on page 10 undefined on input line 1
+34.
+
 ) (./chapters/3.tex
-Overfull \hbox (4.96121pt too wide) in paragraph at lines 112--1
+Overfull \hbox (10.28885pt too wide) in paragraph at lines 112--1
 [][]
  []
 
@@ -643,10 +647,10 @@ Package natbib Warning: Citation(s) may have changed.
 Here is how much of TeX's memory you used:
  2957 strings out of 95087
  37358 string characters out of 1183277
- 92452 words of memory out of 1500000
+ 93452 words of memory out of 1500000
  6060 multiletter control sequences out of 10000+50000
  61977 words of font info for 60 fonts, out of 1200000 for 2000
  30 hyphenation exceptions out of 8191
  35i,16n,48p,236b,280s stack positions out of 5000i,500n,6000p,200000b,5000s
 
-Output written on mono.dvi (13 pages, 16368 bytes).
+Output written on mono.dvi (13 pages, 16944 bytes).
