@@ -1,0 +1,34 @@
+%NÃO ALTERAR! Não faça nenhuma alteração na linha abaixo!
+\ProvidesPackage{./arquivos_para_alterar/a00-personalizar}
+%NÃO ALTERAR
+
+%Os pacotes chamados pelo arquivo principal são:
+%\usepackage{graphicx}
+%\usepackage[latin1]{inputenc}
+%\usepackage[brazil]{babel}
+%\usepackage[alf]{abntcite} 
+%\usepackage{amsfonts,amssymb,ifthen,amsthm}
+
+%Utilize o espaço abaixo para criar seus próprios comandos, teoremas, chamar pacotes, recriar comandos,...
+%Faça alterações por sua conta e risco!
+
+\theoremstyle{definition}
+\newtheorem{teorema}{Teorema}[chapter]
+\newtheorem{proposicao}[teorema]{Proposição}
+\newtheorem{lema}[teorema]{Lema}
+\newtheorem{corolario}[teorema]{Corolário}
+\newtheorem{exemplo}{Exemplo}[chapter]
+\newtheorem{exemplos}[exemplo]{Exemplos}
+\newtheorem{observacao}{Observação}[chapter]
+\newtheorem{observacoes}[observacao]{Observações}
+\newtheorem{definicao}{Definição}[chapter]
+\newtheorem{definicoes}[definicao]{Definições}
+\newenvironment{demonstracao}{\vspace{-0.7cm}\begin{proof}[Demonstração]}{\end{proof}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Modelo para escrever TCCs,dissertações e teses utilizando LaTeX, ABNTeX e BibTeX
+% Autor/E-Mail: Robinson Alves Lemos/contato@robinson.mat.br/robinson.a.l@bol.com.br
+% Data: 19/04/2008 
+% Colaboradore(s)/E-Mail(s):
+% Caso queira colaborar, entre em contato pelo e-mail e informe alterações que realizou.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

@@ -1,0 +1,62 @@
+\chapter{Nome do Capítulo} %Adicione mais capítulos após o este com o comando \chapter{NOME DE OUTRO CAPÍTULO}
+
+
+% TODO O CONTEÚDO DESTE CAPÍTULO É EXEMPLO!!!
+% TROQUE PELO SEU PRÓPRIO CONTEÚDO!!!
+%
+% Este capítulo de exemplo mostra como utilizar algumas funcionalidades do \LaTeX, como por exemplo:
+% Figuras, referências cruzadas, referências bibliográficas, etc...
+
+\section{Figuras}
+Podemos observar um exemplo na figura~\ref{fig01}.
+
+\begin{figure}[ht] % [especificador de posição]:exemplos [htbp] - h:aqui, t:topo, b:baixo, p:página especial, !: desconsiderar parâmetros internos
+\begin{center}
+\includegraphics[scale=.5]{./figuras/teste.jpg} %Opções: width (largura em pt ou cm ou vezes se não houver unidade de medida), height (altura em pt, cm ou vezes se não houver unidade de medida), angle (rotação em graus), scale (escala em vezes 0.5= 50%,1.5=150%, etc )
+\end{center}
+ 
+\caption[Nome Curto da figura (aparece na Lista de Figuras)]{Nome Longo para a figura}
+\label{fig01}
+\end{figure}
+
+\section{Referências}
+
+Exemplos para citar referências. Um exemplo em \cite{ref1}. Ou utilizamos \cite[p.~35]{ref1}.
+
+Quando for citar explicitamente o autor da referência, utilize: De acordo com \citeonline{ref8} temos (\ldots). Outra forma: De acordo com \citeonline[p.~15]{ref8} temos (\ldots). Ainda podemos ter: De acordo com \citeonline[p.~15--17]{ref8} temos (\ldots). 
+
+Para fazer uma citação longa (Com mais de três linhas) utilize:
+
+\begin{citacao}
+Mono mono mono mono mono mono mono mono mono mono mono mono mono mono mono mono mono mono mono mono mono mono mono mono mono mono mono mono mono mono mono mono mono mono mono mono mono mono mono mono mono mono mono mono mono mono mono mono mono mono mono mono mono mono mono mono mono mono mono mono mono mono mono mono mono mono \cite[p.~14--15]{ref1}.
+\end{citacao}
+
+A citação longa deve vir em parágrafo separado, com recuo de 4 cm da margem esquerda, em fonte menor, sem as aspas e com espaçamento simples
+
+
+\section{Texto Matemático}
+
+Utilize \$ para inciar e finalizar o modo matemático\footnote{nota de rodapé} dentro de um texto não matemático e \$\$ para inciar e finalizar o modo matemático centralizado (Fórmulas). Exemplo dentro de um texto não matemático: Sejam $a$ e $b$ dois números reais não nulos, logo $a^{b+a} = a^b a^a$. Agora segue um exemplo de modo matemático centralizado: $$\int_a^b f(x) dx = 56.$$
+
+\begin{teorema}
+ Teste!
+\end{teorema}
+\begin{demonstracao}
+ outro teste... e ai será que foi?
+\end{demonstracao}
+
+\begin{definicao}
+ Teste 123, teste teste noanaoaofod ofdjofj ofaj ifdj
+\end{definicao}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Modelo para escrever TCCs, dissertações e teses utilizando LaTeX, ABNTeX e BibTeX
+% Autor/E-Mail: Robinson Alves Lemos/contato@robinson.mat.br/robinson.a.l@bol.com.br
+% Data: 19/04/2008 
+% Colaboradore(s)/E-Mail(s):
+% Caso queira colaborar, entre em contato pelo e-mail e informe alterações que realizou.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+

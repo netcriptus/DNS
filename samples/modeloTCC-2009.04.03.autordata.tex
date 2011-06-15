@@ -1,0 +1,304 @@
+\documentclass[tocpage=plain]{abnt}
+%Opções para docmentclass: chapter=TITLE
+
+%Todas as linhas iniciadas com o símbolo de porcentagem ( % ) são comentários.
+%Estes comentários, normalmente irão informar sobre o documento ou instruir para alterar algo, se necessário.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Modelo para escrever TCCs,dissertações e teses utilizando LaTeX, ABNTeX e BibTeX
+% Autor/E-Mail: Robinson Alves Lemos/contato@robinson.mat.br/robinson.a.l@bol.com.br
+% Data: 19/04/2008 
+% Colaboradore(s)/E-Mail(s):
+% Caso queira colaborar, entre em contato pelo e-mail e informe alterações que realizou.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Histórico
+%
+% 2009.04.03:
+%-Remoção das opções de ídice remissivo
+%-Adição de ambientes: teorema, corolario, exemplo, exemplos, proposicao, observacao, observacoes, 
+%      definicao, definicões, lema e demonstracao no arquivo a00-personalizar.sty
+%-Correção de comentários em vários arquivos
+%-Adição do pacote amsthm
+%-Alteração do arquivo a10-desenvolvimento.tex: 
+%      removido exemplos de índice remissivo 
+%      adicionado exemplos dos novos ambientes proposicao e demonstracao
+%
+% 2008.09.29: 
+%-Acrescentada a opção de compilar um índice remissívo. 
+%-Alteração do arquivo a10-desenvolvimento.tex para contemplar exemplos para criação do índice remissivo.
+%
+% 2008.08.05:
+%-Acrescentadas as opções de compilar uma capa e anexos no arquivo a02-configurar.tex. 
+%-Pequenas melhoras nos comentários do arquivo a15-referencias.bib (que antes era a14-referencias.bib). 
+%-Alteração do texto no arquivo a04-dedicatoria.tex.
+%
+% 2008.04.19: 
+%-Opção de referências numéricas foi extinta. 
+%-Criação do arquivo a02-configurar.tex que permite a escolha de quais arquivos compilar.
+%
+% Antes de 19/04/2008: 
+%-Vários modelos foram feitos até chegar no modelo 2008.04.19, passando de um único arquivo até o molde atual, 
+% com vários arquivos e duas opções, referências numéricas e autor-data.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Pacotes:
+\usepackage{graphicx}
+\usepackage[latin1]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage[alf]{abntcite} 
+\usepackage{amsfonts,amssymb,ifthen,amsthm}
+
+\usepackage{./arquivos_para_alterar/a00-personalizar}
+\usepackage{./arquivos_para_alterar/a01-folhaderosto}
+
+\renewcommand{\ABNTbibliographyname}{Referências}
+\begin{document}
+\provideboolean{InserirCapa}
+\provideboolean{InserirFolhaRosto}
+\provideboolean{InserirFolhaAprovacao}
+\provideboolean{InserirDedicatoria}
+\provideboolean{InserirAgradecimentos}
+\provideboolean{InserirEpigrafe}
+\provideboolean{InserirResumo}
+\provideboolean{InserirAbstract}
+\provideboolean{InserirSumario}
+\provideboolean{InserirListaIlustracoes}
+\provideboolean{InserirIntroducao}
+\provideboolean{InserirDesenvolvimento}
+\provideboolean{InserirConclusao}
+\provideboolean{InserirReferencias}
+\provideboolean{InserirApendice}
+\provideboolean{InserirAnexo}
+
+\input{./arquivos_para_alterar/a02-configurar}
+
+
+%%%%%%%%%
+%%%%%%%%% Elementos Pré-Textuais
+%%%%%%%%%
+
+
+%%%%%%%%% Capa
+\ifthenelse{\boolean{InserirCapa}}{
+
+\capa
+
+}{}
+%%%%%%%%% Fim da Capa
+
+%%%%%%%%% Folha de Rosto --- NÃO ALTERAR NADA
+\ifthenelse{\boolean{InserirFolhaRosto}}{
+
+\folhaderosto
+
+}{}
+%%%%%%%%% Fim Folha de Rosto
+
+
+%%%%%%%%% Folha de Aprovação 
+\ifthenelse{\boolean{InserirFolhaAprovacao}}{
+
+\begin{folhadeaprovacao}
+  \input{./arquivos_para_alterar/a03-folhadeaprovacao}
+\end{folhadeaprovacao}
+
+}{}
+%%%%%%%%% Fim Folha de Aprovação
+
+
+
+%%%%%%%%% Dedicatória
+\ifthenelse{\boolean{InserirDedicatoria}}{
+
+\pretextualchapter{}
+
+\vfill
+
+\begin{flushright}
+
+\hfill 
+
+\textit{
+\input{./arquivos_para_alterar/a04-dedicatoria}
+}
+
+\end{flushright}
+
+
+\vspace*{1cm}
+}{}
+%%%%%%%%% Fim Dedicatória
+
+%%%%%%%%% Agradecimentos
+\ifthenelse{\boolean{InserirAgradecimentos}}{
+
+\pretextualchapter{Agradecimentos}
+
+\input{./arquivos_para_alterar/a05-agradecimentos}
+
+}{}
+%%%%%%%%% Fim Agradecimentos
+
+%%%%%%%%% Epígrafe
+\ifthenelse{\boolean{InserirEpigrafe}}{
+
+\pretextualchapter{}
+
+\vfill
+
+\begin{flushright}
+
+\hfill{
+\input{./arquivos_para_alterar/a06-epigrafe}
+}
+
+\end{flushright}
+
+}{}
+%%%%%%%%% Fim Epígrafe
+
+
+%%%%%%%%% Resumo
+\ifthenelse{\boolean{InserirResumo}}{
+
+\begin{resumo}
+ \input{./arquivos_para_alterar/a07-resumo}
+\end{resumo}
+
+}{}
+%%%%%%%%% Fim Resumo
+
+
+%%%%%%%%% Abstract: Somente para dissertações e teses:
+\ifthenelse{\boolean{InserirAbstract}}{
+
+\begin{abstract}
+  \input{./arquivos_para_alterar/a08-abstract}
+\end{abstract}
+
+}{}
+%%%%%%%%% Fim Abstract
+
+
+
+%%%%%%%%% Sumário --- NÃO ALTERAR
+\ifthenelse{\boolean{InserirSumario}}{
+
+\tableofcontents
+
+}{}
+%%%%%%%%% Fim Sumário
+
+%%%%%%%%% Lista de Figuras (para lista de tabelas: \listoftables Utilizar caso tenha mais de 5 figuras
+\ifthenelse{\boolean{InserirListaIlustracoes}}{ 
+
+\listoffigures
+
+}{} 
+%%%%%%%%% Fim Lista de Figuras
+
+
+%%%%%%%%%
+%%%%%%%%% Fim Elementos Pré-Textuais
+%%%%%%%%%
+
+
+%%%%%%%%%
+%%%%%%%%% Elementos Textuais
+%%%%%%%%%
+% 
+%     *   Introdução
+%     *   Desenvolvimento
+%     *   Conclusão/Considerações Finais
+
+
+%Introdução 
+\ifthenelse{\boolean{InserirIntroducao}}{
+
+\pretextualchapter{Introdução}
+
+\input{./arquivos_para_alterar/a09-introducao}
+
+}{}
+
+
+%Desenvolvimento
+\ifthenelse{\boolean{InserirDesenvolvimento}}{
+
+\input{./arquivos_para_alterar/a10-desenvolvimento}
+
+}{}
+
+
+%Conclusão
+\ifthenelse{\boolean{InserirConclusao}}{
+
+\chapter{Considerações Finais}
+
+\input{./arquivos_para_alterar/a11-conclusao}
+
+
+}{}
+
+%%%%%%%%%
+%%%%%%%%% Fim Elementos Textuais
+%%%%%%%%%
+
+\ifthenelse{\boolean{InserirReferencias}}{
+
+\input{./arquivos_para_alterar/a12-referenciasnaocidadas}
+
+}{}
+
+
+%%%%%%%%%
+%%%%%%%%% Elementos Pós-Textuais
+%%%%%%%%%
+
+%%%%%%%%% Referências
+\ifthenelse{\boolean{InserirReferencias}}{
+
+\bibliography{./arquivos_para_alterar/a15-referencias}
+
+}{}
+%%%%%%%%% Fim Referências
+
+
+
+
+%%%%%%%%% Apéndice: Após este comando, cada comando \chapter{} indicará um apêndice!
+\ifthenelse{\boolean{InserirApendice}}{
+
+\apendice
+
+\input{./arquivos_para_alterar/a13-apendice}
+
+}{} 
+%%%%%%%%% Fim Apêndice
+
+
+\ifthenelse{\boolean{InserirAnexo}}{
+
+\annex
+
+\input{./arquivos_para_alterar/a14-anexo}
+
+}{}
+
+
+%%%%%%%%% Índice Remissivo
+
+%\printindex
+
+%%%%%%%%% Fim Índice Remissivo
+
+
+
+%%%%%%%%%
+%%%%%%%%% Fim Elementos Pós-Textuais
+%%%%%%%%%
+
+
+
+\end{document}

@@ -1,9 +1,0 @@
-\contentsline {chapter}{\numberline {1}Primeiro}{7}
-\contentsline {chapter}{\numberline {2}Estrutura do Domain Name System}{8}
-\contentsline {section}{\numberline {2.1}Gram\IeC {\'a}tica}{8}
-\contentsline {section}{\numberline {2.2}Os elementos do DNS}{9}
-\contentsline {section}{\numberline {2.3}Nomes de Dom\IeC {\'\i }nio e Registros}{9}
-\contentsline {subsection}{\numberline {2.3.1}Nomes de Dom\IeC {\'\i }nio}{9}
-\contentsline {subsection}{\numberline {2.3.2}Registros}{10}
-\contentsline {chapter}{\numberline {3}Terceiro}{11}
-\contentsline {chapter}{Bibliography}{13}
