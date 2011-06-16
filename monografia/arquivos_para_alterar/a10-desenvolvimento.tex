@@ -1,7 +1,7 @@
 \chapter{Estrutura do Domain Name System}
 
 Desde o início das discussões sobre um espaço de nomes, sempre foi
-cogitada uma solução hierárquica e distribuída \notice{rfc1034} para a
+cogitada uma solução hierárquica e distribuída \citeonline{rfc1034} para a
 implementação.
 
 Hoje, a base de dados do DNS é indexada por nomes de domínio. Cada
@@ -18,7 +18,7 @@ definições sobre os termos usados neste documento.
 \section{Gramática}
 
 A sintaxe a seguir foi feita para evitar problemas de ambiguidade e
-definições \notice{rfc1035}:
+definições \citeonline{rfc1035}:
 
 \begin{itemize}
 \item <domínio> ::= <subdomínio> | " "
@@ -43,7 +43,7 @@ menos de 64 caracteres.
 
 \section{Os elementos do DNS}
 
-O DNS é formado por três elementos principais \notice{rfc1034}:
+O DNS é formado por três elementos principais \cite{rfc1034}:
 
 \begin{enumerate}
 \item \textbf{Nomes de domínio} e \textbf{Registros}, que são as
@@ -83,7 +83,7 @@ geral).
 Como já citado anteriormente, o Sistema de Nomes de Domínios é
 organizado em estrutura de árvore, onde cada nodo e cada folha contém um
 conjunto de informações, podendo este conjunto ser vazio
-\notice{rfc1034}. Cada nodo deve ter um rótulo, cujo tamanho varia entre 0
+\cite{rfc1034}. Cada nodo deve ter um rótulo, cujo tamanho varia entre 0
 e 63 octetos, sendo que um nome, o de tamanho zero (nulo), é reservado
 para a raiz. Nodos irmãos não podem ter o mesmo nome, mas não há
 problema se nodos não irmãos tiverem nomes iguais.
@@ -97,7 +97,7 @@ guardar rótulos sem ignorar essa diferença, mantendo o nome original do
 domínio. A justificativa dessa decisão é que, eventualmente, pode ser
 necessário diferenciar nomes em caixa alta e caixa baixa, e a
 implementação atual garante que nenhum serviço tenha que ser
-drásticamente alterado \notice{rfc1034}.
+drásticamente alterado \cite{rfc1034}.
 
 Para simplificar implementações do DNS, o tamanho máximo de octetos de
 um nome de domínio é limitado a 255.
@@ -107,14 +107,14 @@ um nome de domínio é limitado a 255.
 Cada nodo da árvore de nomes de domínio possui um conjunto de
 informações de registros, que pode ser vazio. A ordenação de registros
 em um conjunto não é significante, e não precisa ser mantida. Assumimos
-que um registro tem as seguintes informações \notice{comer}:
+que um registro tem as seguintes informações \cite{comer}:
 
 \begin{tabular}{ l p{0.82\textwidth} }
 \textbf{Dono} & Em qual nome de domínio esse registro é
   encontrado.\\
 \textbf{Tipo} & É um código de 16 bits o tipo de recurso
   desse registro. Como padrão, são especificados os seguintes tipos
-  \notice{rfc1034}:\\
+  \cite{rfc1034}:\\
 
   & \begin{tabular}{ l p{0.70\textwidth} }
       \emph{A} & Endereço de um servidor\\
@@ -131,7 +131,7 @@ que um registro tem as seguintes informações \notice{comer}:
 
   \textbf{Classe} & É um valor de 16 bits que itentifica a família de um
   protocolo ou uma instância de um protocolo. Os valores especificados
-  \notice{rfc1034} são:\\
+  \cite{rfc1034} são:\\
   & \begin{tabular}{ l p{0.70\textwidth} }
       \emph{IN} & O sistema Internet\\
       \emph{CH} & O sistema \textit{Chaos}
@@ -147,7 +147,7 @@ que um registro tem as seguintes informações \notice{comer}:
 \section{Servidores de nomes}
 
 Servidores de nomes são repositórios de informações que, juntos, compõe
-a árvore do DNS \notice{albitz}. As informações contidas em um servidor de
+a árvore do DNS \cite{albitz}. As informações contidas em um servidor de
 nomes pode ser obtida através de um arquivo local (chamado
 \textit{master file}) ou a partir de outros servidores de nomes.
 
