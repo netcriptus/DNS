@@ -9,14 +9,20 @@ forsure: all
 all: pdf
 	mv -f ${FILE}.pdf ${PDF}
 
-dvi: ${LATEX}
-	latex ${LATEX}
+pdf:ps
+	ps2pdf ${PS}
 
 ps:dvi
 	dvips ${DVI}
 
-pdf:ps
-	ps2pdf ${PS}
+
+dvi: ${LATEX} bib
+	latex ${LATEX}
+
+bib: ${LATEX}
+	latex ${LATEX}
+	bibtex ${LATEX}
+	latex ${LATEX}
 
 clean:
 	rm -rf *.aux *.dvi *~ *.log *.ps
