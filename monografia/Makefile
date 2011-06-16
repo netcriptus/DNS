@@ -21,8 +21,8 @@ dvi: ${LATEX} bib
 
 bib: ${LATEX}
 	latex ${LATEX}
-	bibtex ${LATEX}
+	bibtex ${FILE}
 	latex ${LATEX}
 
 clean:
-	rm -rf *.aux *.dvi *~ *.log *.ps
+	rm -rf *.aux *.dvi *~ *.log *.ps *.blg *.bbl *.lof *.toc
