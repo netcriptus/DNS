@@ -213,7 +213,22 @@ Com a aleatoriedade do número de \textit{queryID}, ficou muito mais complexo usa
 
 Mas mesmo a chance sendo pequena, Kaminsky notou que não existia um limite de tentativas. Segundo o próprio Kaminsky, em uma entrevista para a versão online da revista Wired: "é como uma corrida em que você decide quando será a largada" \cite{interview}.
 
+Ao lançar o ataque escrito por Kaminsky na ferramenta de teste Metasploit, observa-se que é possível enviar em média 50 respostas forjadas para cada requisição enviada. Isso é, aproximadamente, uma chance em 1310, o que pode parecer uma possibilidade tão pequena que deveria ser descartada. No entanto, como não existe limite de tentativas, e disparar requisições aleatórias é um processo muito rápido, Kaminsky reportou que seu ataque envenenava o cache do servidor alvo em cerca de 10 segundos \cite{steve}. Podemos observar o ataque esquematizado na figura \ref{ataque}.
 
+\begin{figure}[ht] % [especificador de posição]:exemplos [htbp] - h:aqui, t:topo, b:baixo, p:página especial, !: desconsiderar parâmetros internos
+\begin{center}
+\includegraphics[scale=.5]{./figuras/badguy-kaminsky-poison-dns.jpg} %Opções: width (largura em pt ou cm ou vezes se não houver unidade de medida), height (altura em pt, cm ou vezes se não houver unidade de medida), angle (rotação em graus), scale (escala em vezes 0.5= 50%,1.5=150%, etc )
+\end{center}
+\caption[Esquema do ataque]{Esquema do ataque Kaminsky, retirado de \cite{steve}}
+\label{ataque}
+\end{figure}
+
+Até então a única coisa feita foi reinventar um ataque de envenenamento que já existia e teoricamente tinha sido eliminado. Mas Kaminsky foi além. O normal do ataque é simplesmente roubar um domínio específico. Por exemplo, no domínio \emph{inf.ufpr.br}, o que ataques clássicos fariam é roubar para si a tradução do nome \emph{inf}, mas, seguindo as regras do DNS \cite{rfc1034}, se um servidor de autoridade responder em sua sessão adicional que ele também é uma autoridade para o \emph{.br}, o cache do resolvedor alvo será sobrescrito, e então esse ataque pode roubar os chamados \textit{Top Level Domains} (TLD), que são os domínios mais próximos da raiz, e tem mais nodos sob sua delegação.
+
+Seguindo o mesmo padrão, seria possível roubar a autoridade do \emph{.com}, \emph{.net}, e todos os principais TLD's de qualquer servidor de nome que não seja autoridade para esse TLD \cite{steve}.
+
+\section{Correção de segurança}
+lorem ispum
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
