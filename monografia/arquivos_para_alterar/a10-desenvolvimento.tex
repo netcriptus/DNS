@@ -157,6 +157,27 @@ que um registro tem as seguintes informações \cite{comer}:
   dependentes da classe dos dados.\\
 \end{tabular}
 
+As figuras \ref{pacote-cliente} e \ref{pacote-servidor} demonstram todos os campos de um pacote de requisição DNS.
+
+
+\begin{figure}[h] % [especificador de posição]:exemplos [htbp] - h:aqui, t:topo, b:baixo, p:página especial, !: desconsiderar parâmetros internos
+\begin{center}
+\includegraphics[scale=.5]{./figuras/dns-packet-client-server.eps} %Opções: width (largura em pt ou cm ou vezes se não houver unidade de medida), height (altura em pt, cm ou vezes se não houver unidade de medida), angle (rotação em graus), scale (escala em vezes 0.5= 50%,1.5=150%, etc )
+\end{center}
+\caption[Pacote DNS do cliente]{Esquema dos campos de um pacote DNS sendo enviado de um cliente para um servidor, de acordo com o RFC1034 \cite{rfc1034}, retirado de \cite{steve}}
+\label{pacote-cliente}
+\end{figure}
+
+\begin{figure}[h] % [especificador de posição]:exemplos [htbp] - h:aqui, t:topo, b:baixo, p:página especial, !: desconsiderar parâmetros internos
+\begin{center}
+\includegraphics[scale=.5]{./figuras/dns-packet-server-client.eps} %Opções: width (largura em pt ou cm ou vezes se não houver unidade de medida), height (altura em pt, cm ou vezes se não houver unidade de medida), angle (rotação em graus), scale (escala em vezes 0.5= 50%,1.5=150%, etc )
+\end{center}
+\caption[Pacote DNS do cliente]{Esquema dos campos de um pacote DNS sendo enviado de um servidor para um cliente, de acordo com o RFC1034 \cite{rfc1034}, retirado de \cite{steve}}
+\label{pacote-servidor}
+\end{figure}
+
+
+
 \section{Servidores de nomes}
 
 Servidores de nomes são repositórios de informações que, juntos, compõe
@@ -213,9 +234,9 @@ Com a aleatoriedade do número de \textit{queryID}, ficou muito mais complexo usa
 
 Mas mesmo a chance sendo pequena, Kaminsky notou que não existia um limite de tentativas. Segundo o próprio Kaminsky, em uma entrevista para a versão online da revista Wired: "é como uma corrida em que você decide quando será a largada" \cite{interview}.
 
-Ao lançar o ataque escrito por Kaminsky na ferramenta de teste Metasploit, observa-se que é possível enviar em média 50 respostas forjadas para cada requisição enviada. Isso é, aproximadamente, uma chance em 1310, o que pode parecer uma possibilidade tão pequena que deveria ser descartada. No entanto, como não existe limite de tentativas, e disparar requisições aleatórias é um processo muito rápido, Kaminsky reportou que seu ataque envenenava o cache do servidor alvo em cerca de 10 segundos \cite{steve}. Podemos observar o ataque esquematizado na figura \ref{ataque}.
+Ao lançar o ataque escrito por Kaminsky na ferramenta de teste Metasploit, observa-se que é possível enviar em média 100 respostas forjadas para cada requisição enviada. Isso é, aproximadamente, uma chance em 656, o que pode parecer uma possibilidade tão pequena que deveria ser descartada. No entanto, como não existe limite de tentativas, e disparar requisições aleatórias é um processo muito rápido, Kaminsky reportou que seu ataque envenenava o cache do servidor alvo em cerca de 10 segundos \cite{steve}. Podemos observar o ataque esquematizado na figura \ref{ataque}.
 
-\begin{figure}[ht] % [especificador de posição]:exemplos [htbp] - h:aqui, t:topo, b:baixo, p:página especial, !: desconsiderar parâmetros internos
+\begin{figure}[h] % [especificador de posição]:exemplos [htbp] - h:aqui, t:topo, b:baixo, p:página especial, !: desconsiderar parâmetros internos
 \begin{center}
 \includegraphics[scale=.5]{./figuras/badguy-kaminsky-poison-dns.eps} %Opções: width (largura em pt ou cm ou vezes se não houver unidade de medida), height (altura em pt, cm ou vezes se não houver unidade de medida), angle (rotação em graus), scale (escala em vezes 0.5= 50%,1.5=150%, etc )
 \end{center}
@@ -223,12 +244,41 @@ Ao lançar o ataque escrito por Kaminsky na ferramenta de teste Metasploit, obser
 \label{ataque}
 \end{figure}
 
-Até então a única coisa feita foi reinventar um ataque de envenenamento que já existia e teoricamente tinha sido eliminado. Mas Kaminsky foi além. O normal do ataque é simplesmente roubar um domínio específico. Por exemplo, no domínio \emph{inf.ufpr.br}, o que ataques clássicos fariam é roubar para si a tradução do nome \emph{inf}, mas, seguindo as regras do DNS \cite{rfc1034}, se um servidor de autoridade responder em sua sessão adicional que ele também é uma autoridade para o \emph{.br}, o cache do resolvedor alvo será sobrescrito, e então esse ataque pode roubar os chamados \textit{Top Level Domains} (TLD), que são os domínios mais próximos da raiz, e tem mais nodos sob sua delegação.
+Até então a única coisa feita foi reinventar um ataque de envenenamento que já existia e teoricamente fora eliminado. Mas Kaminsky foi além. O normal do ataque é simplesmente roubar um domínio específico. Por exemplo, no domínio \emph{inf.ufpr.br}, o que ataques clássicos fariam é roubar para si a tradução do nome \emph{inf}, mas, seguindo as regras do DNS \cite{rfc1034}, se um servidor de autoridade responder em sua sessão adicional que ele também é uma autoridade para o \emph{.br}, o cache do resolvedor alvo será sobrescrito, e então esse ataque pode roubar os chamados \textit{Top Level Domains} (TLD), que são os domínios mais próximos da raiz, e tem mais nodos sob sua delegação.
 
 Seguindo o mesmo padrão, seria possível roubar a autoridade do \emph{.com}, \emph{.net}, e todos os principais TLD's de qualquer servidor de nome que não seja autoridade para esse TLD \cite{steve}.
 
+A técnica consiste em gerar uma string aleatória sob o domínio que se deseja envenenar, e sempre exigir uma resposta de autoridade, negando assim qualquer resposta que possa haver em cache e exigindo que o resolvedor envie requisições para outros servidores. Ao receber uma resposta, os registros em cache eram sempre reescritos com a informação mais recente, ou seja, ainda que o domínio procurado já estivesse em cache, ele seria substituído pela resposta forjada.
+
+Essa técnica passou a ser conhecida como Ataque Kaminsky.
+
+\section{Riscos do ataque}
+
+A organização em árvore fez com que nenhum nodo do DNS tenha conhecimento da rede inteira, apenas da zona pela qual está responsável.
+
+São raros os programas que não usam DNS. Especulou-se se o problema de envenenamento não poderia ser resolvido usando SSL para sites de informações sigilosas, mas muitas entidades certificadoras enviam seus certificados por e-mail, que por sua vez usa o DNS. Se um atacante conseguir envenenar o resolvedor usado por uma entidade certificadora, pode conseguir receber certificados válidos para vários sites que podem ser forjados.
+
+Além dos riscos óbvios de poder forjar sites que recebem dados sigilosos, como bancos, o envenenamento de um servidor muito requisitado permite ao atacante induzir anomalias do tipo \textit{Flash Crowd}\footnote{Flash Crowd caracteriza quando, por algum motivo, uma página na internet fica muito popular. O excesso de visitas em um curto período de tempo cria um DDoS e faz com que a página saia do ar \cite{flashcrowd}}, redirecionando um tráfego muito grande para o site que será a vítima.
+
+Como já mencionado, servidores de e-mail precisam de traduções de nomes, inclusive e-mails bancários, governamentais e militares, contendo mensagens confidenciais. Em outras palavras uma série de envenenamentos de cache bem sucedidos permitiria ao atacante controle sobre o tráfego na internet e acesso a muitas informações confidenciais.
+
 \section{Correção de segurança}
-lorem ispum
+
+Os 16 bits que compõe o identificador da mensagem acabou se revelando, apesar de tudo, um espaço de busca relativamente pequeno. A primeira ideia que pode ocorrer é aumentar esse espaço para 32 bits; no entanto isso é impossível de ser feito em pouco tempo, uma vez que uma mudança no formato do pacote quebraria o DNS na internet \cite{steve}. A solução foi copiada do \textit{djbdns}, uma das poucas implementações que não eram vulneráveis ao ataque.
+
+Inventado pelo criptógrafo e professor da Universidade de Ilinóis, Chicago, Daniel J. Bernstein, o \textit{djbdns} funciona de maneira parecida aos outros programas afetados pelo ataque Kaminsky, mas com uma difereça fundamental.
+
+Era prática comum usar a porta UDP 53 para enviar requisições entre servidores e resolvedores DNS \cite{rfc1035}, mas o \textit{djbdns} usava uma porta aleatória a cada nova requisição, uma vez que usar a porta 53 é apenas uma recomendação e não uma regra. Com isso, além de acertar o número de identificação da requisição, também é preciso que a resposta seja enviada para a porta correta.
+
+Isso diminui drasticamente as chances de um atacante ser bem sucedido, uma vez que é prática comum servidores pré-alocarem 2500 portas UDP para serem aleatoriamente usadas pelo DNS \cite{steve}. Para efeitos de cálculos, vamos contar como sendo 2048, ou $2^11$ portas pré-alocadas. Isso resulta em:
+
+$2^11$ portas $* 2^16$ possibilidades de identificadores $= 2^27$, ou 32 milhões de combinações possíveis.
+
+Ainda que um atacante consiga produzir 100 pacotes por requisição, as chances dele conseguir acertar a combinação e envenenar o cache de um servidor é de uma em 320 mil, isto é, aproximadamente 490 vezes menos provável que a versão antiga da implementação.
+
+Além disso, alguns programas populares que implementam o DNS, como o BIND, mudaram as regras sobre quando um registro em cache pode ser sobrescrito. ***\textbf{(Albini, foi o Kaminsky quem me falou isso por e-mail, tem como eu colocar um e-mail como referência?)}***
+
+A descoberta do ataque Kaminsky promoveu a maior atualização em massa desde que o DNS foi inventado \cite{steve}.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
