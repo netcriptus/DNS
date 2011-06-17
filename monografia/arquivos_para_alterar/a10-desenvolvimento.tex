@@ -162,17 +162,17 @@ As figuras \ref{pacote-cliente} e \ref{pacote-servidor} demonstram todos os camp
 
 \begin{figure}[h] % [especificador de posição]:exemplos [htbp] - h:aqui, t:topo, b:baixo, p:página especial, !: desconsiderar parâmetros internos
 \begin{center}
-\includegraphics[scale=.5]{./figuras/dns-packet-client-server.eps} %Opções: width (largura em pt ou cm ou vezes se não houver unidade de medida), height (altura em pt, cm ou vezes se não houver unidade de medida), angle (rotação em graus), scale (escala em vezes 0.5= 50%,1.5=150%, etc )
+\includegraphics[scale=.7]{./figuras/dns-packet-client-server.eps} %Opções: width (largura em pt ou cm ou vezes se não houver unidade de medida), height (altura em pt, cm ou vezes se não houver unidade de medida), angle (rotação em graus), scale (escala em vezes 0.5= 50%,1.5=150%, etc )
 \end{center}
-\caption[Pacote DNS do cliente]{Esquema dos campos de um pacote DNS sendo enviado de um cliente para um servidor, de acordo com o RFC1034 \cite{rfc1034}, retirado de \cite{steve}}
+\caption[Pacote DNS do cliente para o servidor]{Esquema dos campos de um pacote DNS sendo enviado de um cliente para um servidor, de acordo com o RFC1034 \cite{rfc1034}, retirado de \cite{steve}}
 \label{pacote-cliente}
 \end{figure}
 
 \begin{figure}[h] % [especificador de posição]:exemplos [htbp] - h:aqui, t:topo, b:baixo, p:página especial, !: desconsiderar parâmetros internos
 \begin{center}
-\includegraphics[scale=.5]{./figuras/dns-packet-server-client.eps} %Opções: width (largura em pt ou cm ou vezes se não houver unidade de medida), height (altura em pt, cm ou vezes se não houver unidade de medida), angle (rotação em graus), scale (escala em vezes 0.5= 50%,1.5=150%, etc )
+\includegraphics[scale=.7]{./figuras/dns-packet-server-client.eps} %Opções: width (largura em pt ou cm ou vezes se não houver unidade de medida), height (altura em pt, cm ou vezes se não houver unidade de medida), angle (rotação em graus), scale (escala em vezes 0.5= 50%,1.5=150%, etc )
 \end{center}
-\caption[Pacote DNS do cliente]{Esquema dos campos de um pacote DNS sendo enviado de um servidor para um cliente, de acordo com o RFC1034 \cite{rfc1034}, retirado de \cite{steve}}
+\caption[Pacote DNS do servidor para o cliente]{Esquema dos campos de um pacote DNS sendo enviado de um servidor para um cliente, de acordo com o RFC1034 \cite{rfc1034}, retirado de \cite{steve}}
 \label{pacote-servidor}
 \end{figure}
 
@@ -258,7 +258,7 @@ A organização em árvore fez com que nenhum nodo do DNS tenha conhecimento da red
 
 São raros os programas que não usam DNS. Especulou-se se o problema de envenenamento não poderia ser resolvido usando SSL para sites de informações sigilosas, mas muitas entidades certificadoras enviam seus certificados por e-mail, que por sua vez usa o DNS. Se um atacante conseguir envenenar o resolvedor usado por uma entidade certificadora, pode conseguir receber certificados válidos para vários sites que podem ser forjados.
 
-Além dos riscos óbvios de poder forjar sites que recebem dados sigilosos, como bancos, o envenenamento de um servidor muito requisitado permite ao atacante induzir anomalias do tipo \textit{Flash Crowd}\footnote{Flash Crowd caracteriza quando, por algum motivo, uma página na internet fica muito popular. O excesso de visitas em um curto período de tempo cria um DDoS e faz com que a página saia do ar \cite{flashcrowd}}, redirecionando um tráfego muito grande para o site que será a vítima.
+Além dos riscos óbvios de poder forjar sites que recebem dados sigilosos, como bancos, o envenenamento de um servidor muito requisitado permite ao atacante induzir anomalias do tipo \textit{Flash Crowd}\footnote{Flash Crowd caracteriza quando, por algum motivo, uma página na internet fica muito popular. O excesso de visitas em um curto período de tempo cria um DDoS e faz com que a página fique indisponível \cite{flashcrowd}}, redirecionando um tráfego muito grande para o site que será a vítima.
 
 Como já mencionado, servidores de e-mail precisam de traduções de nomes, inclusive e-mails bancários, governamentais e militares, contendo mensagens confidenciais. Em outras palavras uma série de envenenamentos de cache bem sucedidos permitiria ao atacante controle sobre o tráfego na internet e acesso a muitas informações confidenciais.
 
