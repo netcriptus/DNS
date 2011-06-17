@@ -193,7 +193,28 @@ O algoritmo seguido por um Servidor de Nomes para lidar com uma requisição de tr
 
 \chapter{Falha de segurança no DNS}
 
+Em Julho de 2008 foi anunciado pelo \textit{CERT} (\textit{Computer Emergency Readiness Team}) que o pesquisador de segurança Dan Kaminsky havia descoberto uma falha fundamental no protocolo do DNS, definido nos RFC's 1034 \cite{rfc1034} e 1035 \cite{rfc1035}.
 
+Para entender melhor a natureza dessa falha, é preciso antes entender como funcionava a segurança nas consultas de DNS antes de 2008.
+
+\section{Protocolo antigo de segurança}
+
+Como visto anteriormente, ao receber uma pergunta de um usuário, o Resolvedor envia requisições para vários servidores ao mesmo tempo; a resposta que ele receber primeiro será considerada como a correta, e as outras serão ignoradas \cite{rfc1034}. Isso cria uma condição de corrida entre os servidores sendo consultados.
+
+Para garantir que a resposta vem de um dos servidores, cada requisição enviada possui um número de identificação único, chamado de \textit{query ID}. A resposta de uma requisição deveria ter o mesmo \textit{query ID} da requisição.
+
+Nas primeiras versões das implementações, esse número era sequencial, o que fazia com que fosse muito fácil descobrir qual o próximo número no contador local do Resolvedor \cite{steve}. Desse modo, é possível forjar uma resposta a uma requisição, usando o endenreço de um dos servidores de nome de autoridade, e entregar uma resposta falsa, que será guardada em cache e usada para outras perguntas sobre a mesma zona.
+
+As versões posteriores das implementações do DNS tomaram um cuidado maior com a segurança desse número de identificação e o tornaram aleatório. Esse protocolo de segurança durou até 2008, quando o pesquisador Kaminsky descobriu uma falha que permitia o envenenamento da cache, que atingia a maioria das implementações do DNS (as poucas exceções foram \textit{djbdns}, \textit{PowerDNS}, \textit{MaraDNS} e \textit{Unbound}).
+
+\section{A falha Kaminsky}
+
+Com a aleatoriedade do número de \textit{queryID}, ficou muito mais complexo usar o ataque para envenenamento de cache, uma vez que esse número é formado por 16 bits, ou seja, são 65.536 possíveis valores, e uma janela de tempo razoavelmente pequena para que esse número seja adivinhado.
+
+Mas mesmo a chance sendo pequena, Kaminsky notou que não existia um limite de tentativas. Segundo o próprio Kaminsky, em uma entrevista para a versão online da revista Wired:
+\begin{cite}
+é como uma corrida em que você decide quando será a largada
+\end{cite}\cite{interview}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
