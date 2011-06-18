@@ -270,7 +270,7 @@ Inventado pelo criptógrafo e professor da Universidade de Ilinóis, Chicago, Dani
 
 Era prática comum usar a porta UDP 53 para enviar requisições entre servidores e resolvedores DNS \cite{rfc1035}, mas o \textit{djbdns} usava uma porta aleatória a cada nova requisição, uma vez que usar a porta 53 é apenas uma recomendação e não uma regra. Com isso, além de acertar o número de identificação da requisição, também é preciso que a resposta seja enviada para a porta correta.
 
-Isso diminui drasticamente as chances de um atacante ser bem sucedido, uma vez que é prática comum servidores pré-alocarem 2500 portas UDP para serem aleatoriamente usadas pelo DNS \cite{steve}. Para efeitos de cálculos, vamos contar como sendo 2048, ou $2^11$ portas pré-alocadas. Isso resulta em:
+Isso diminui drasticamente as chances de um atacante ser bem sucedido, uma vez que é prática comum servidores pré-alocarem 2500 portas UDP para serem aleatoriamente usadas pelo DNS \cite{steve}. Para efeitos de cálculos, vamos contar como sendo 2048, ou $2^{11}$ portas pré-alocadas. Isso resulta em:
 
 $2^{11}$ portas $\times 2^{16}$ possibilidades de identificadores $= 2^{27}$, ou 134 milhões de combinações possíveis.
 
