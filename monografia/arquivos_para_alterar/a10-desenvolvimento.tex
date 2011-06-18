@@ -272,7 +272,7 @@ Era prática comum usar a porta UDP 53 para enviar requisições entre servidores e
 
 Isso diminui drasticamente as chances de um atacante ser bem sucedido, uma vez que é prática comum servidores pré-alocarem 2500 portas UDP para serem aleatoriamente usadas pelo DNS \cite{steve}. Para efeitos de cálculos, vamos contar como sendo 2048, ou $2^11$ portas pré-alocadas. Isso resulta em:
 
-$2^11$ portas $* 2^16$ possibilidades de identificadores $= 2^27$, ou 32 milhões de combinações possíveis.
+$2^{11}$ portas $X 2^{16}$ possibilidades de identificadores $= 2^{27}$, ou 32 milhões de combinações possíveis.
 
 Ainda que um atacante consiga produzir 100 pacotes por requisição, as chances dele conseguir acertar a combinação e envenenar o cache de um servidor é de uma em 320 mil, isto é, aproximadamente 490 vezes menos provável que a versão antiga da implementação.
 
