@@ -224,7 +224,7 @@ Como visto anteriormente, ao receber uma pergunta de um usuário, o Resolvedor en
 
 Para garantir que a resposta vem de um dos servidores, cada requisição enviada possui um número de identificação único, chamado de \textit{query ID}. A resposta de uma requisição deveria ter o mesmo \textit{query ID} da requisição.
 
-Nas primeiras versões das implementações, esse número era sequencial, o que fazia com que fosse muito fácil descobrir qual o próximo número no contador local do Resolvedor \cite{steve}. Desse modo, é possível forjar uma resposta a uma requisição, usando o endenreço de um dos servidores de nome de autoridade, e entregar uma resposta falsa, que será guardada em cache e usada para outras perguntas sobre a mesma zona.
+Nas primeiras versões das implementações, esse número era sequencial, o que fazia com que fosse muito fácil descobrir qual o próximo número no contador local do Resolvedor \cite{steve}. Desse modo, é possível forjar uma resposta a uma requisição, usando o endereço de um dos servidores de nome de autoridade, e entregar uma resposta falsa, que será guardada em cache e usada para outras perguntas sobre a mesma zona.
 
 As versões posteriores das implementações do DNS tomaram um cuidado maior com a segurança desse número de identificação e o tornaram aleatório. Esse protocolo de segurança durou até 2008, quando o pesquisador Kaminsky descobriu uma falha que permitia o envenenamento da cache, que atingia a maioria das implementações do DNS (as poucas exceções foram \textit{djbdns}, \textit{PowerDNS}, \textit{MaraDNS} e \textit{Unbound}).
 
@@ -232,7 +232,7 @@ As versões posteriores das implementações do DNS tomaram um cuidado maior com a 
 
 Com a aleatoriedade do número de \textit{queryID}, ficou muito mais complexo usar o ataque para envenenamento de cache, uma vez que esse número é formado por 16 bits, ou seja, são 65.536 possíveis valores, e uma janela de tempo razoavelmente pequena para que esse número seja adivinhado.
 
-Mas mesmo a chance sendo pequena, Kaminsky notou que não existia um limite de tentativas. Segundo o próprio Kaminsky, em uma entrevista para a versão online da revista Wired: "é como uma corrida em que você decide quando será a largada" \cite{interview}.
+Mas mesmo a chance sendo pequena, Kaminsky notou que não existia um limite de tentativas. Segundo o próprio Kaminsky, em uma entrevista para a versão on-line da revista Wired: "é como uma corrida em que você decide quando será a largada" \cite{interview}.
 
 Ao lançar o ataque escrito por Kaminsky na ferramenta de teste Metasploit, observa-se que é possível enviar em média 100 respostas forjadas para cada requisição enviada. Isso é, aproximadamente, uma chance em 656, o que pode parecer uma possibilidade tão pequena que deveria ser descartada. No entanto, como não existe limite de tentativas, e disparar requisições aleatórias é um processo muito rápido, Kaminsky reportou que seu ataque envenenava o cache do servidor alvo em cerca de 10 segundos \cite{steve}. Podemos observar o ataque esquematizado na figura \ref{ataque}.
 
@@ -266,7 +266,7 @@ Como já mencionado, servidores de e-mail precisam de traduções de nomes, inclusi
 
 Os 16 bits que compõe o identificador da mensagem acabou se revelando, apesar de tudo, um espaço de busca relativamente pequeno. A primeira ideia que pode ocorrer é aumentar esse espaço para 32 bits; no entanto isso é impossível de ser feito em pouco tempo, uma vez que uma mudança no formato do pacote quebraria o DNS na internet \cite{steve}. A solução foi copiada do \textit{djbdns}, uma das poucas implementações que não eram vulneráveis ao ataque.
 
-Inventado pelo criptógrafo e professor da Universidade de Ilinóis, Chicago, Daniel J. Bernstein, o \textit{djbdns} funciona de maneira parecida aos outros programas afetados pelo ataque Kaminsky, mas com uma difereça fundamental.
+Inventado pelo criptógrafo e professor da Universidade de Ilinóis, Chicago, Daniel J. Bernstein, o \textit{djbdns} funciona de maneira parecida aos outros programas afetados pelo ataque Kaminsky, mas com uma diferença fundamental.
 
 Era prática comum usar a porta UDP 53 para enviar requisições entre servidores e resolvedores DNS \cite{rfc1035}, mas o \textit{djbdns} usava uma porta aleatória a cada nova requisição, uma vez que usar a porta 53 é apenas uma recomendação e não uma regra. Com isso, além de acertar o número de identificação da requisição, também é preciso que a resposta seja enviada para a porta correta.
 
@@ -279,6 +279,50 @@ Ainda que um atacante consiga produzir 100 pacotes por requisição, as chances de
 Além disso, alguns programas populares que implementam o DNS, como o BIND, mudaram as regras sobre quando um registro em cache pode ser sobrescrito. ***\textbf{(Albini, foi o Kaminsky quem me falou isso por e-mail, tem como eu colocar um e-mail como referência?)}***
 
 A descoberta do ataque Kaminsky promoveu a maior atualização em massa desde que o DNS foi inventado \cite{steve}.
+
+\chapter{Implementando um novo ataque}
+
+Com a aleatoriedade das portas, o problema foi aparentemente sanado. Mas a condição de corrida ainda existe, apesar da possibilidade de um atacante conseguir sucesso no envenenamento é visivelmente menor. As correções lançadas oficialmente, no entanto, não levaram em conta a possibilidade de um ataque distribuído.
+
+\section{Ataques distribuídos}
+
+A possibilidade de envenenamento com $2^{16}$ combinações era pequena, mas matematicamente plausível, e Kaminsky provou que esse risco não poderia ser ignorado. Com portas aleatórias que multiplicam o número de combinações por um número entre $2^{11}$ e $2^{12}$ possibilidades, o risco é tão baixo que é matematicamente descartável. Essa aleatoriedade, no entanto, ainda pode ser atacada de forma distribuída.
+
+Se usarmos uma rede grande o suficiente para se equiparar ao número de portas sendo aleatorizadas, com cada nodo da rede sendo responsável por uma das 2500 portas, implementando o ataque desenvolvido por Kaminsky, reduzimos as possibilidades ao mesmo cenário que Kaminsky encontrou em 2008. Resta então saber se uma rede de 2500 nodos ou mais é uma possibilidade plausível.
+
+\section{Redes zumbis}
+
+Uma rede zumbi, ou \textit{botnet}, é uma rede de computadores infectados com um programa malicioso que permite ao atacante ter controle remoto dos computadores sem o conhecimento do usuário \cite{economics}.
+
+Geralmente o código malicioso se replica automaticamente de nodo para nodo, seja através da internet, rede local, e-mails, ou por dispositivos de transporte de dados, como pendrives.
+
+Segundo dados da Kaspersky Labs, uma rede zumbi pode crescer rapidamente a números assustadores. Nos três primeiros meses de 2011 a praga \emph{TDL-4} infectou 4.524.488 no mundo inteiro \cite{TDL4}, e essa não é a maior rede da qual se tem notícia. O \textit{worm} Conficker, criado em 2008, chegou a um pico de 7 milhões de máquinas infectadas \cite{lessons_learned}, e hoje, depois de várias correções e vacinas lançadas, tem uma rede estimada em 3.541.209 nodos \cite{conficker_whitepaper}.
+
+A conclusão que chegamos com esses números é que existem botnets muito maiores do que o necessário para atacar cada uma das portas sendo aleatorizadas. Uma rede zumbi com 2500 nodos é até um número simplório diante das redes zumbis modernas. Considerando então uma rede de 100 mil nodos, e ainda considerando a conta que nos apresentou com 134 milhões de possibilidades de combinações de \textit{queryID} e porta UDP, se cada nodo conseguir enviar 50 mensagens por requisição, temos uma chance de acerto de aproximadamente uma em 26, ou seja, ainda mais provável do que o ataque original usando apenas uma porta e uma máquina atacante.
+
+\section{A implementação do ataque distribuído}
+
+Para provar a possibilidade de envenenamento de um servidor com um ataque distribuído, nossos testes deveriam passar por 3 fases:
+\begin{enumerate}
+  \item Verificar que um servidor atual, com as correções aplicadas é imune ao ataque
+  \item Envenenar um servidor antigo com o ataque escrito em 2008 por Kaminsky
+  \item Tentar envenenar o cache de um servidor atual simulando um ataque distribuído em menor escala.
+\end{enumerate}
+
+Para simular o ataque distribuído em pequena escala, a solução adotada foi reduzir o número de portas a apenas 2, e usar uma rede com 2 nodos, e gradualmente aumentar o número de portas no servidor alvo e o número de nodos na rede para realizar o ataque.
+
+Como servidor de nomes alvo foi usado um MacBook Pro com MacOSX 10.6.8 rodando BIND nas versões 9.6.0, 9.4.2rc2 e 9.2.7. Os nodos atacantes estavam rodando o LiveCD do Backtrack Linux 4, e utilizando o ataque implementado pelo próprio Dan Kaminsky no framework Metasploit. Como saída para a internet foi usado outro MacBook Pro, com conexão de 3G, uma vez que a conexão da internet da UFPR não permite a saída de pacotes de DNS. O Masterfile do servidor de DNS não foi configurado com nenhum endereço inicialmente, de modo que ele tivesse que consultar outros servidores para qualquer requisição que recebesse. Todos os computadores usados na simulação estavam física e logicamente na mesma rede.
+
+Ao tentar verificar a imunidade dos servidores atuais tivemos uma surpresa. Ainda que com uma chance irrisória, rodando o ataque a partir de 3 nodos diferentes, tivemos sucesso em envenenar o cache do nosso servidor. No entanto, como esperado -- dada a pequena possibilidade --, não conseguimos repetir o envenenamento nas tentativas seguintes.
+
+Quando tentamos rodar uma versão antiga do BIND para testar o ataque descobrimos que todas as versões anteriores haviam recebido o pacote de correção lançado em 2008. Assumimos então que a única mudança efetuada foi aquela amplamente divulgada; tornar aleatórias as portas UDP's alocadas para comunicação com outros servidores. Modificamos então essa função nos arquivos de configuração para permitir que apenas a porta 53 seja usada, imaginando que isso seria o suficiente para simular o cenário de 2008. Para essa simulação usamos um BIND 9.4.2rc2. Como não obtivemos sucesso em nenhuma das tentativas, supomos que essa versão tivesse recebido mais atualizações além da divulgada, então tentamos usar o BIND 9.2.7.
+
+Com a falta de sucesso nos testes com a versão mais antiga, começamos a explorar o código-fonte. Descobrimos que o ISC -- Internet System Consortium, consórcio responsável pelo BIND -- não divulgou todas as correções lançadas. Entre as correções não divulgadas está uma verificação de MAC ADDRESS do solicitante e dos resolvedores de nomes. O ataque implementado por Dan Kaminsky mascara o IP da máquina que responde a requisição com pacotes forjados, mas não altera o MAC ADDRESS. O excesso de pacotes enviados pelo mesmo endereço faz com que o servidor descarte as mensagens recebidas.
+
+Além disso, para sobrescrever o cache com registros de alto nível -- os \textit{Top Level Domains} ou TLD -- era necessário o envio de um pacote criptografado com a chave pública do servidor de nomes -- recurso que anteriormente era opcional, e costumava estar desabilitado, mas recentemente tornou-se habilitado por padrão.
+
+Sendo assim, sequer chegamos a tentar o ataque distribuído, visto que as novas correções lançadas no BIND impedem que ele aconteça.
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
