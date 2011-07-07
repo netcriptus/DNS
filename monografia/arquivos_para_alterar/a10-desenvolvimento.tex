@@ -2,30 +2,30 @@
 Esse é um placeholder para o primeiro capítulo.
 
 \section{Motivação}
-Esse é um placeholder para a motivação
+Mesmo que a correção tenha sido amplamente divulgada na época, ela foi basicamente sugerida majoritariamente por apenas uma pessoa -- Dan Kaminsky --, e inspirada em apenas um modelo já existente -- a implementação do DNS criada pelo Professor Daniel J. Bernstein. Existe espaço ainda para questionar a eficácia da solução adotada, e verificar se todos os problemas foram realmente sanados.
 
 \section{Objetivos}
-Esse é um placeholder para os objetivos
+
+Este trabalho pretende estudar a situação da segurança no protocolo do DNS e sua evolução desde sua invenção até 2008, quando foi encontrada a maior falha da sua história. Em seguida, pretendo analisar a solução adotada, questionar sua efetividade e propor uma nova versão do ataque que provou a existência da falha.
 
 \section{Organização do Trabalho}
-Esse é um placeholder para a organização do trabalho
 
-\chapter{Estrutura e funcionamento básico do Domain Name System}
+Este trabalho está dividido em três capítulos principais. No capítulo 2 a estrutura básica que compõe o Domain Name System será explicada, bem como seu funcionamento. No capítulo 3 entramos em mais detalhes sobre a segurança do DNS, quais os problemas antigos e como eles foram sanados, e também é explicada a Falha Kaminsky, o risco que ela apresentava para a internet e a correção usada. No capítulo 4 uma nova forma do ataque é proposta, e também são apresentados os resultados experimentais das tentativas de explorar a falha.
+
+\chapter{Estrutura e funcionamento básico do Sistema de Nomes de Domínios (DNS)}
 
 Desde o início das discussões sobre um espaço de nomes, sempre foi
 cogitada uma solução hierárquica e distribuída para a
-implementação \cite{rfc1034}.
+implementação \cite{rfc1034}. Antes de prosseguir com a estrutura, é necessário fazer algumas
+definições sobre os termos usados neste documento.
 
 Hoje a base de dados do DNS é indexada por nomes de domínio. Cada
 domínio é um caminho em uma árvore invertida. A estrutura de árvore é
 similar à estrutura do sistema de arquivos utilizado nos sistemas
 \textit{Unix}. A árvore tem uma única raiz, chamado de diretório
-\textit{root} (raiz) no \textit{Unix}, e representado por uma barra
+\textit{raiz} (root) no \textit{Unix}, e representado por uma barra
 (/); no DNS, esse diretório é chamado simplesmente de \textit{"raiz"}, e não
 recebe nome.
-
-Antes de prosseguir com a estrutura, é necessário fazer algumas
-definições sobre os termos usados neste documento.
 
 \section{Gramática}
 
@@ -112,14 +112,13 @@ implementação atual garante que nenhum serviço tenha que ser
 drasticamente alterado \cite{rfc1034}.
 
 Para simplificar implementações do DNS, o tamanho máximo de octetos de
-um nome de domínio é limitado a 255 caracteres.
+um nome de domínio é limitado a 255 caracteres \cite{rfc1034}.
 
 \subsection{Registros}
 
 Cada nodo da árvore de nomes de domínio possui um conjunto de
 informações de registros, que pode ser vazio. A ordenação de registros
-em um conjunto não é significante, e não precisa ser mantida. Assumimos
-que um registro tem as seguintes informações \cite{comer}:
+em um conjunto não é significante, e não precisa ser mantida. Um registro deve ter as seguintes informações \cite{comer}:
 
 \begin{tabular}{ l p{0.82\textwidth} }
 \textbf{Dono} & Em qual nome de domínio esse registro é
@@ -191,7 +190,7 @@ servidor primário é replicada para vários servidores secundários para
 garantir a redundância dos dados.
 
 Todo servidor tem informação autoritária sobre uma zona, e alguns
-servidores podem ser autoridades para várias zonas. Nos servidores de autoridade, os nomes para os quais eles são autoridade estão guardados no Masterfile, e suas traduções nunca ficam em cache. Para garantir a segurança por redundância, um domínio deve estar em pelo menos dois servidores de autoridade, e não existe um máximo, além desses dois servidores necessariamente devem estar topologicamente separados \cite{ns-rules}.
+servidores podem ser autoridades para várias zonas. Nos servidores de autoridade, os nomes para os quais eles são autoridade estão guardados no \textit{master file}, e suas traduções nunca ficam em cache. Para garantir a segurança por redundância, um domínio deve estar em pelo menos dois servidores de autoridade, e não existe um máximo, além desses dois servidores necessariamente devem estar topologicamente separados \cite{ns-rules}.
 
 \section{Tradução de um nome}
 
@@ -214,7 +213,7 @@ O algoritmo seguido por um Servidor de Nomes para lidar com uma requisição de tr
 
 \chapter{Falha de segurança no DNS}
 
-Em Julho de 2008 foi anunciado pelo \textit{CERT} (\textit{Computer Emergency Readiness Team}) que o pesquisador de segurança Dan Kaminsky havia descoberto uma falha fundamental no protocolo do DNS, definido nos RFC's 1034 \cite{rfc1034} e 1035 \cite{rfc1035}.
+Em Julho de 2008 foi anunciado pelo \textit{CERT} (\textit{Computer Emergency Readiness Team} -- Time de prontidão a emergências computacionais) que o pesquisador de segurança Dan Kaminsky havia descoberto uma falha fundamental no protocolo do DNS, definido nos RFC's 1034 \cite{rfc1034} e 1035 \cite{rfc1035}.
 
 Para entender melhor a natureza dessa falha, é preciso antes entender como funcionava a segurança nas consultas de DNS antes de 2008.
 
@@ -222,7 +221,7 @@ Para entender melhor a natureza dessa falha, é preciso antes entender como funci
 
 Como visto anteriormente, ao receber uma pergunta de um usuário, o Resolvedor envia requisições para vários servidores ao mesmo tempo; a resposta que ele receber primeiro será considerada como a correta, e as outras serão ignoradas \cite{rfc1034}. Isso cria uma condição de corrida entre os servidores sendo consultados.
 
-Para garantir que a resposta vem de um dos servidores, cada requisição enviada possui um número de identificação único, chamado de \textit{query ID}. A resposta de uma requisição deveria ter o mesmo \textit{query ID} da requisição.
+Para garantir que a resposta vem de um dos servidores, cada requisição enviada possui um número de identificação único, chamado de ID de requisição (\textit{query ID}). A resposta de uma requisição deveria ter o mesmo ID da requisição.
 
 Nas primeiras versões das implementações, esse número era sequencial, o que fazia com que fosse muito fácil descobrir qual o próximo número no contador local do Resolvedor \cite{steve}. Desse modo, é possível forjar uma resposta a uma requisição, usando o endereço de um dos servidores de nome de autoridade, e entregar uma resposta falsa, que será guardada em cache e usada para outras perguntas sobre a mesma zona.
 
@@ -244,7 +243,9 @@ Ao lançar o ataque escrito por Kaminsky na ferramenta de teste Metasploit, obser
 \label{ataque}
 \end{figure}
 
-Até então a única coisa feita foi reinventar um ataque de envenenamento que já existia e teoricamente fora eliminado. Mas Kaminsky foi além. O normal do ataque é simplesmente roubar um domínio específico. Por exemplo, no domínio \emph{inf.ufpr.br}, o que ataques clássicos fariam é roubar para si a tradução do nome \emph{inf}, mas, seguindo as regras do DNS \cite{rfc1034}, se um servidor de autoridade responder em sua sessão adicional que ele também é uma autoridade para o \emph{.br}, o cache do resolvedor alvo será sobrescrito, e então esse ataque pode roubar os chamados \textit{Top Level Domains} (TLD), que são os domínios mais próximos da raiz, e tem mais nodos sob sua delegação.
+Até então a única coisa feita foi reinventar um ataque de envenenamento que já existia e teoricamente fora eliminado. Mas Kaminsky foi além. O normal do ataque é simplesmente roubar um domínio específico.
+
+Por exemplo, no domínio \emph{inf.ufpr.br}, o que ataques clássicos fariam é roubar para si a tradução do nome \emph{inf}, mas, seguindo as regras do DNS \cite{rfc1034}, se um servidor de autoridade responder em sua sessão adicional que ele também é uma autoridade para o \emph{.br}, o cache do resolvedor alvo será sobrescrito, e então esse ataque pode roubar os chamados \textit{Top Level Domains} (TLD), que são os domínios mais próximos da raiz, e tem mais nodos sob sua delegação.
 
 Seguindo o mesmo padrão, seria possível roubar a autoridade do \emph{.com}, \emph{.net}, e todos os principais TLD's de qualquer servidor de nome que não seja autoridade para esse TLD \cite{steve}.
 
@@ -258,21 +259,21 @@ A organização em árvore fez com que nenhum nodo do DNS tenha conhecimento da red
 
 São raros os programas que não usam DNS. Especulou-se se o problema de envenenamento não poderia ser resolvido usando SSL para sites de informações sigilosas, mas muitas entidades certificadoras enviam seus certificados por e-mail, que por sua vez usa o DNS. Se um atacante conseguir envenenar o resolvedor usado por uma entidade certificadora, pode conseguir receber certificados válidos para vários sites que podem ser forjados.
 
-Além dos riscos óbvios de poder forjar sites que recebem dados sigilosos, como bancos, o envenenamento de um servidor muito requisitado permite ao atacante induzir anomalias do tipo \textit{Flash Crowd}\footnote{Flash Crowd caracteriza quando, por algum motivo, uma página na internet fica muito popular. O excesso de visitas em um curto período de tempo cria um DDoS e faz com que a página fique indisponível \cite{flashcrowd}}, redirecionando um tráfego muito grande para o site que será a vítima.
+Além dos riscos óbvios de poder forjar sites que recebem dados sigilosos, como bancos, o envenenamento de um servidor muito requisitado permite ao atacante induzir anomalias do tipo \textit{Flash Crowd}\footnote{Flash Crowd caracteriza quando, por algum motivo, uma página na internet fica muito popular. O excesso de visitas em um curto período de tempo cria um ataque distribuído de negação de serviço (DDoS) e faz com que a página fique indisponível \cite{flashcrowd}}, redirecionando um tráfego muito grande para o site que será a vítima.
 
 Como já mencionado, servidores de e-mail precisam de traduções de nomes, inclusive e-mails bancários, governamentais e militares, contendo mensagens confidenciais. Em outras palavras uma série de envenenamentos de cache bem sucedidos permitiria ao atacante controle sobre o tráfego na internet e acesso a muitas informações confidenciais.
 
 \section{Correção de segurança}
 
-Os 16 bits que compõe o identificador da mensagem acabou se revelando, apesar de tudo, um espaço de busca relativamente pequeno. A primeira ideia que pode ocorrer é aumentar esse espaço para 32 bits; no entanto isso é impossível de ser feito em pouco tempo, uma vez que uma mudança no formato do pacote quebraria o DNS na internet \cite{steve}. A solução foi copiada do \textit{djbdns}, uma das poucas implementações que não eram vulneráveis ao ataque.
+Os 16 bits que compõe o identificador da mensagem acabou se revelando, apesar de tudo, um espaço de busca relativamente pequeno. A primeira ideia que pode ocorrer é aumentar esse espaço para 32 bits; no entanto isso é impossível de ser feito em pouco tempo, uma vez que uma mudança no formato do pacote quebraria o DNS na internet \cite{steve}. A solução foi copiada da implementação do DNS criada pelo Professor Daniel J. Bernstein, o \textit{DJBDNS}, uma das poucas implementações que não eram vulneráveis ao ataque.
 
-Inventado pelo criptógrafo e professor da Universidade de Ilinóis, Chicago, Daniel J. Bernstein, o \textit{djbdns} funciona de maneira parecida aos outros programas afetados pelo ataque Kaminsky, mas com uma diferença fundamental.
+Inventado pelo criptógrafo e professor da Universidade de Ilinóis, Chicago, Daniel J. Bernstein, o \textit{DJBDNS} funciona de maneira parecida aos outros programas afetados pelo ataque Kaminsky, mas com uma diferença fundamental.
 
-Era prática comum usar a porta UDP 53 para enviar requisições entre servidores e resolvedores DNS \cite{rfc1035}, mas o \textit{djbdns} usava uma porta aleatória a cada nova requisição, uma vez que usar a porta 53 é apenas uma recomendação e não uma regra. Com isso, além de acertar o número de identificação da requisição, também é preciso que a resposta seja enviada para a porta correta.
+Era prática comum usar a porta UDP 53 para enviar requisições entre servidores e resolvedores DNS \cite{rfc1035}, mas o \textit{DJBDNS} usava uma porta aleatória a cada nova requisição, dado que usar a porta 53 é apenas uma recomendação e não uma regra. Com isso, além de acertar o número de identificação da requisição, também é preciso que a resposta seja enviada para a porta correta.
 
-Isso diminui drasticamente as chances de um atacante ser bem sucedido, uma vez que é prática comum servidores pré-alocarem 2500 portas UDP para serem aleatoriamente usadas pelo DNS \cite{steve}. Para efeitos de cálculos, vamos contar como sendo 2048, ou $2^{11}$ portas pré-alocadas. Isso resulta em:
+Isso diminui drasticamente as chances de um atacante ser bem sucedido, uma vez que é natural servidores pré-alocarem 2500 portas UDP para serem aleatoriamente usadas pelo DNS \cite{steve}. Para efeitos de cálculos, considere como sendo 2048, ou $2^{11}$ portas pré-alocadas. Isso resulta em:
 
-$2^{11}$ portas $\times 2^{16}$ possibilidades de identificadores $= 2^{27}$, ou 134 milhões de combinações possíveis.
+$2^{11}$ portas $\times 2^{16}$ possibilidades de identificadores $= 2^{27}$, ou seja, mais de 134 milhões de combinações possíveis.
 
 Ainda que um atacante consiga produzir 100 pacotes por requisição, as chances dele conseguir acertar a combinação e envenenar o cache de um servidor é de uma em 1,340 milhão, isto é, aproximadamente 2.042 vezes menos provável que a versão antiga da implementação.
 
