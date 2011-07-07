@@ -1,5 +1,13 @@
 \chapter{Introdução}
-Esse é um placeholder para o primeiro capítulo.
+No final dos anos 1960, a Agência de Pesquisas de Projetos Avançados (ARPA) do Departamento de Defesa americano começou a testar a ARPANet, uma ampla rede experimental, que a princípio deveria ser usado para propósitos industriais e governamentais. No entanto, desde sua criação, essa rede já começou a ser usada para fins colaborativos, como troca de arquivos e troca de correio eletrônico \cite{albitz}.
+
+Foi uma questão de tempo até que essa rede incluísse universidades americanas, entre elas, Berkeley, lar do sistema operacional BSD Unix. Em meados de 1980, o Protocolo de Controle de Transmissão/Protocolo de Internet (TCP/IP) já era padrão na comunicação entre redes na ARPANet, e foi rapidamente incorporado no BSD Unix.
+
+A rede começou a ganhar popularidade e a se expandir. A única solução de tradução de nomes para endereços IP's válidos até então era o arquivo \textit{HOSTS.TXT}, que era distribuído por uma autoridade central. Com o crescimento da rede, essa solução começou a se mostrar insustentável, tanto pelo tamanho do arquivo quanto pela insegurança do sistema.
+
+Em 1983 Paul Mockapetris inventou e escreveu as especificações do Sistema de Nomes de Domínio, o DNS, e um ano depois 4 estudantes de Berkeley -- Douglas Terry, Mark Painter, David Riggle, and Songnian Zhou -- implementaram o sistema de Mockapetris em um programa que chamaram \textit{The Berkeley Internet Name Domain} (Nome de domínio de Internet de Berkeley), ou BIND. Essa foi a primeira implementação do DNS.
+
+Desde 1983 o protocolo de DNS não parou de evoluir: passou por uma revisão em 1987, recebeu muitas extensões, teve que ser alterado massivamente em 2008 graças à falha descoberta por Dan Kaminsky e recentemente está se adequando à mudança do IPv4 para o IPv6.
 
 \section{Motivação}
 Mesmo que a correção tenha sido amplamente divulgada na época, ela foi basicamente sugerida majoritariamente por apenas uma pessoa -- Dan Kaminsky --, e inspirada em apenas um modelo já existente -- a implementação do DNS criada pelo Professor Daniel J. Bernstein. Existe espaço ainda para questionar a eficácia da solução adotada, e verificar se todos os problemas foram realmente sanados.
