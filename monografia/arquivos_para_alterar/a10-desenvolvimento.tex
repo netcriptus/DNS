@@ -20,20 +20,12 @@ Este trabalho pretende estudar a situação da segurança no protocolo do DNS e sua
 
 Este trabalho está dividido em três capítulos principais. No capítulo 2 a estrutura básica que compõe o Domain Name System será explicada, bem como seu funcionamento. No capítulo 3 entramos em mais detalhes sobre a segurança do DNS, quais os problemas antigos e como eles foram sanados, e também é explicada a Falha Kaminsky, o risco que ela apresentava para a internet e a correção usada. No capítulo 4 uma nova forma do ataque é proposta, e também são apresentados os resultados experimentais das tentativas de explorar a falha.
 
-\chapter{Estrutura e funcionamento básico do Sistema de Nomes de Domínios (DNS)}
+\chapter{Estrutura e funcionamento básico do \textit{Domain Name System}}
 
-Desde o início das discussões sobre um espaço de nomes, sempre foi
-cogitada uma solução hierárquica e distribuída para a
-implementação \cite{rfc1034}. Antes de prosseguir com a estrutura, é necessário fazer algumas
-definições sobre os termos usados neste documento.
+Desde o início das discussões sobre um espaço de nomes, sempre foi cogitada uma solução hierárquica e distribuída para a
+implementação \cite{rfc1034}. Antes de prosseguir com a estrutura, é necessário fazer algumas definições sobre os termos usados neste documento.
 
-Hoje a base de dados do DNS é indexada por nomes de domínio. Cada
-domínio é um caminho em uma árvore invertida. A estrutura de árvore é
-similar à estrutura do sistema de arquivos utilizado nos sistemas
-\textit{Unix}. A árvore tem uma única raiz, chamado de diretório
-\textit{raiz} (root) no \textit{Unix}, e representado por uma barra
-(/); no DNS, esse diretório é chamado simplesmente de \textit{"raiz"}, e não
-recebe nome.
+Hoje a base de dados do DNS é indexada por nomes de domínio. Cada domínio é um caminho em uma árvore invertida. A estrutura de árvore é similar à estrutura do sistema de arquivos utilizado nos sistemas \textit{Unix}. A árvore tem uma única raiz, chamado de diretório \textit{raiz} (root) no \textit{Unix}, e representado por uma barra (/); no DNS, esse diretório é chamado simplesmente de \textit{"raiz"}, e não recebe nome.
 
 \section{Gramática}
 
@@ -52,14 +44,10 @@ definições, de acordo com o RFC1035 \cite{rfc1035}:
 \item $<$dígito$>$ ::= qualquer um dos dez dígitos de 0 a 9.
 \end{itemize}
 
-Note que, apesar de serem permitidas letras maiúsculas e minúsculas,
-elas não tem significado diferente no DNS, de modo que o pseudo--domínio
+Note que, apesar de serem permitidas letras maiúsculas e minúsculas, elas não tem significado diferente no DNS, de modo que o pseudo--domínio
 a.b.c deve ser o mesmo que A.B.C.
 
-Os rótulos devem seguir as regras da ARPANET para nomes de máquinas:
-devem começar com uma letra e terminar com uma letra ou dígito, e ter
-seu interior formado por letras, dígitos ou hífens. Rótulos devem ter
-menos de 64 caracteres.
+Os rótulos devem seguir as regras da ARPANET para nomes de máquinas: devem começar com uma letra e terminar com uma letra ou dígito, e ter seu interior formado por letras, dígitos ou hífens. Rótulos devem ter menos de 64 caracteres \cite{rfc1034}.
 
 \section{Os elementos do DNS}
 
@@ -71,14 +59,16 @@ O DNS é formado por três elementos principais \cite{rfc1034}:
   árvore, e os dados associados aos nomes.
 
 \item \textbf{Servidores de nomes}, que são programas de servidores que
-  contêm informações sobre a estrutura do domínio de nomes. Um Servidor
-  de nomes pode armazenar em cache a estrutura ou os registros de
+  contêm informações sobre a estrutura do domínio de nomes.
+  
+  Um Servidor de nomes pode armazenar em cache a estrutura ou os registros de
   qualquer parte da árvore de domínio de nomes, mas geralmente um
   servidor de nomes em particular tem informação completa sobre um
   subconjunto do domínio de nomes, e ponteiros para outros servidores de
   nomes, que podem ser usados para obter informações sobre qualquer
-  parte da árvore do domínio de nomes. Esses servidores que têm
-  informação completa de certas partes são ditos \textbf{Autoridades}
+  parte da árvore do domínio de nomes.
+  
+  Esses servidores que têm informação completa de certas partes são ditos \textbf{Autoridades}
   para essas partes. As informações de autoridades são organizadas em
   unidades chamadas \textbf{Zonas}.
 
@@ -108,6 +98,8 @@ e 63 octetos, sendo que o nome de tamanho zero (nulo), é reservado
 para a raiz. Nodos irmãos não podem ter o mesmo nome, mas não há
 problema se nodos não irmãos tiverem nomes iguais.
 
+Por exemplo, só pode existir um nodo com o nome \textit{inf} sob o domínio \textit{ufpr.br}, mas não há problemas com o domínio \textit{inf.ufsc.br}, pois apesar de ambos estarem sob o domínio \textit{.br}, um deles está em \textit{ufpr.br} e o outro em \textit{ufsc.br}, o que faz com que sejam nodos não irmãos.
+
 O nome de domínio de um nodo é a lista de rótulos do nodo até a
 raiz. Por convenção, os nomes são escritos e lidos da esquerda para a
 direita, do mais específico (nome mais perto do nó) para o menos
@@ -120,7 +112,7 @@ implementação atual garante que nenhum serviço tenha que ser
 drasticamente alterado \cite{rfc1034}.
 
 Para simplificar implementações do DNS, o tamanho máximo de octetos de
-um nome de domínio é limitado a 255 caracteres \cite{rfc1034}.
+um nome de domínio é limitado a 255 caracteres \cite{rfc1034} -- não confundir com os 63 octetos que formam um rótulo; um domínio pode ser formado por vários rótulos que possuem no máximo 63 caracteres, e o domínio por sua vez pode atingir no máximo 255 caracteres.
 
 \subsection{Registros}
 
@@ -167,7 +159,7 @@ em um conjunto não é significante, e não precisa ser mantida. Um registro deve t
 As figuras \ref{pacote-cliente} e \ref{pacote-servidor} demonstram todos os campos de um pacote de requisição DNS.
 
 
-\begin{figure}[h] % [especificador de posição]:exemplos [htbp] - h:aqui, t:topo, b:baixo, p:página especial, !: desconsiderar parâmetros internos
+\begin{figure}[p] % [especificador de posição]:exemplos [htbp] - h:aqui, t:topo, b:baixo, p:página especial, !: desconsiderar parâmetros internos
 \begin{center}
 \includegraphics[scale=.7]{./figuras/dns-packet-client-server.eps} %Opções: width (largura em pt ou cm ou vezes se não houver unidade de medida), height (altura em pt, cm ou vezes se não houver unidade de medida), angle (rotação em graus), scale (escala em vezes 0.5= 50%,1.5=150%, etc )
 \end{center}
@@ -175,7 +167,7 @@ As figuras \ref{pacote-cliente} e \ref{pacote-servidor} demonstram todos os camp
 \label{pacote-cliente}
 \end{figure}
 
-\begin{figure}[h] % [especificador de posição]:exemplos [htbp] - h:aqui, t:topo, b:baixo, p:página especial, !: desconsiderar parâmetros internos
+\begin{figure}[p] % [especificador de posição]:exemplos [htbp] - h:aqui, t:topo, b:baixo, p:página especial, !: desconsiderar parâmetros internos
 \begin{center}
 \includegraphics[scale=.7]{./figuras/dns-packet-server-client.eps} %Opções: width (largura em pt ou cm ou vezes se não houver unidade de medida), height (altura em pt, cm ou vezes se não houver unidade de medida), angle (rotação em graus), scale (escala em vezes 0.5= 50%,1.5=150%, etc )
 \end{center}
@@ -197,23 +189,22 @@ chamados de primários, e os outros, secundários. A informação de um
 servidor primário é replicada para vários servidores secundários para
 garantir a redundância dos dados.
 
-Todo servidor tem informação autoritária sobre uma zona, e alguns
-servidores podem ser autoridades para várias zonas. Nos servidores de autoridade, os nomes para os quais eles são autoridade estão guardados no \textit{master file}, e suas traduções nunca ficam em cache. Para garantir a segurança por redundância, um domínio deve estar em pelo menos dois servidores de autoridade, e não existe um máximo, além desses dois servidores necessariamente devem estar topologicamente separados \cite{ns-rules}.
+Todo servidor tem informação autoritária sobre uma zona, e alguns servidores podem ser autoridades para várias zonas. Nos servidores de autoridade, os nomes para os quais eles são autoridade estão guardados no \textit{master file}, e suas traduções nunca ficam em cache. Para garantir a segurança por redundância, um domínio deve estar em pelo menos dois servidores de autoridade, e não existe número máximo de servidores para um domínio. Além disso esses dois servidores necessariamente devem estar topologicamente separados \cite{ns-rules}.
 
 \section{Tradução de um nome}
 
 Do ponto de vista de um Resolvedor recursivo, o algoritmo em alto nível para traduzir um nome tem 4 passos \cite{rfc1034}:
 
 \begin{enumerate}
-  \item Procurar a resposta em informação local (cache). Se encontrada, retornar a resposta ao cliente
-  \item Encontrar os melhores Servidores de Nomes para perguntar a tradução
-  \item Enviar a pergunta para todos os servidores encontrados até que um deles responda
-  \item Analise a resposta:
+  \item Procurar a resposta em informação local (cache). Se encontrada, retornar a resposta ao cliente;
+  \item Encontrar os melhores Servidores de Nomes para perguntar a tradução;
+  \item Enviar a pergunta para todos os servidores encontrados até que um deles responda;
+  \item Analisar a resposta:
   \begin{itemize}
-    \item Se a resposta contiver um erro ou uma tradução do nome requisitado, guarde o resultado em cache e retorne-o para o cliente
-    \item Se a resposta apontar para uma zona melhor para fazer a pergunta, guarde essa informação em cache e volte ao passo 2
-    \item Se a resposta contiver um CNAME, isso é, um nome canônico, isso significa que o nome procurado era apenas um \textit{alias} para esse nome. Guarde a tradução do nome normal para o nome canônico em cache, mude o nome buscado para aquele obtido na resposta com o CNAME e volte ao passo 1
-    \item Se a resposta mostrar algum erro de servidor, ou qualquer outro tipo de resposta não prevista, exclua esse servidor da lista e volte ao passo 3
+    \item Se a resposta contiver um erro ou uma tradução do nome requisitado, guarde o resultado em cache e retorne-o para o cliente;
+    \item Se a resposta apontar para uma zona melhor para fazer a pergunta, guarde essa informação em cache e volte ao passo 2;
+    \item Se a resposta contiver um CNAME, isso é, um nome canônico, isso significa que o nome procurado era apenas um \textit{alias} para esse nome. Guarde a tradução do nome normal para o nome canônico em cache, mude o nome buscado para aquele obtido na resposta com o CNAME e volte ao passo 1;
+    \item Se a resposta mostrar algum erro de servidor, ou qualquer outro tipo de resposta não prevista, exclua esse servidor da lista e volte ao passo 3;
   \end{itemize}
 \end{enumerate}
 
@@ -233,7 +224,7 @@ Para garantir que a resposta vem de um dos servidores, cada requisição enviada p
 
 Nas primeiras versões das implementações, esse número era sequencial, o que fazia com que fosse muito fácil descobrir qual o próximo número no contador local do Resolvedor \cite{steve}. Desse modo, é possível forjar uma resposta a uma requisição, usando o endereço de um dos servidores de nome de autoridade, e entregar uma resposta falsa, que será guardada em cache e usada para outras perguntas sobre a mesma zona.
 
-As versões posteriores das implementações do DNS tomaram um cuidado maior com a segurança desse número de identificação e o tornaram aleatório. Esse protocolo de segurança durou até 2008, quando o pesquisador Kaminsky descobriu uma falha que permitia o envenenamento da cache, que atingia a maioria das implementações do DNS (as poucas exceções foram \textit{djbdns}, \textit{PowerDNS}, \textit{MaraDNS} e \textit{Unbound}).
+As versões posteriores das implementações do DNS tomaram um cuidado maior com a segurança desse número de identificação e o tornaram aleatório. Esse protocolo de segurança durou até 2008, quando o pesquisador Kaminsky descobriu uma falha que permitia o envenenamento da cache, que atingia a maioria das implementações do DNS (as poucas exceções foram \textit{DJBDNS}, \textit{PowerDNS}, \textit{MaraDNS} e \textit{Unbound}) \cite{steve}.
 
 \section{A falha Kaminsky}
 
@@ -241,9 +232,9 @@ Com a aleatoriedade do número de \textit{queryID}, ficou muito mais complexo usa
 
 Mas mesmo a chance sendo pequena, Kaminsky notou que não existia um limite de tentativas. Segundo o próprio Kaminsky, em uma entrevista para a versão on-line da revista Wired: "é como uma corrida em que você decide quando será a largada" \cite{interview}.
 
-Ao lançar o ataque escrito por Kaminsky na ferramenta de teste Metasploit, observa-se que é possível enviar em média 100 respostas forjadas para cada requisição enviada. Isso é, aproximadamente, uma chance em 656, o que pode parecer uma possibilidade tão pequena que deveria ser descartada. No entanto, como não existe limite de tentativas, e disparar requisições aleatórias é um processo muito rápido, Kaminsky reportou que seu ataque envenenava o cache do servidor alvo em cerca de 10 segundos \cite{steve}. Podemos observar o ataque esquematizado na figura \ref{ataque}.
+Ao lançar o ataque escrito por Kaminsky na ferramenta de teste Metasploit \cite{metasploit}, observa-se que é possível enviar em média 100 respostas forjadas para cada requisição enviada. Isso é, aproximadamente, uma chance em 656, o que pode parecer uma possibilidade tão pequena que deveria ser descartada. No entanto, como não existe limite de tentativas, e disparar requisições aleatórias é um processo muito rápido, Kaminsky reportou que seu ataque envenenava o cache do servidor alvo em cerca de 10 segundos \cite{steve}. Podemos observar o ataque esquematizado na figura \ref{ataque}.
 
-\begin{figure}[h] % [especificador de posição]:exemplos [htbp] - h:aqui, t:topo, b:baixo, p:página especial, !: desconsiderar parâmetros internos
+\begin{figure}[p] % [especificador de posição]:exemplos [htbp] - h:aqui, t:topo, b:baixo, p:página especial, !: desconsiderar parâmetros internos
 \begin{center}
 \includegraphics[scale=.5]{./figuras/badguy-kaminsky-poison-dns.eps} %Opções: width (largura em pt ou cm ou vezes se não houver unidade de medida), height (altura em pt, cm ou vezes se não houver unidade de medida), angle (rotação em graus), scale (escala em vezes 0.5= 50%,1.5=150%, etc )
 \end{center}
@@ -285,7 +276,7 @@ $2^{11}$ portas $\times 2^{16}$ possibilidades de identificadores $= 2^{27}$, ou
 
 Ainda que um atacante consiga produzir 100 pacotes por requisição, as chances dele conseguir acertar a combinação e envenenar o cache de um servidor é de uma em 1,340 milhão, isto é, aproximadamente 2.042 vezes menos provável que a versão antiga da implementação.
 
-Além disso, alguns programas populares que implementam o DNS, como o BIND, mudaram as regras sobre quando um registro em cache pode ser sobrescrito. ***\textbf{(Albini, foi o Kaminsky quem me falou isso por e-mail, tem como eu colocar um e-mail como referência?)}***
+Além disso, alguns programas populares que implementam o DNS, como o BIND, mudaram as regras sobre quando um registro em cache pode ser sobrescrito.
 
 A descoberta do ataque Kaminsky promoveu a maior atualização em massa desde que o DNS foi inventado \cite{steve}.
 
